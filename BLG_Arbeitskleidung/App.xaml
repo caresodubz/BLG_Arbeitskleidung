@@ -1,0 +1,10 @@
+﻿<Application x:Class="BLG_Arbeitskleidung.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:BLG_Arbeitskleidung"
+             Startup="OnStartUp"
+             Exit="OnExit">
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>
