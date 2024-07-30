@@ -18,7 +18,7 @@ namespace BLG_Arbeitskleidung.ViewModels {
 
         public LagerplatzAddViewModel(BLGBestandDbContext database) {
             Database = database;
-            foreach(Lagerplatz lagerplatz in Database.Lagerplatz.Include(x => x.Bestände).ToList()) {
+            foreach(Lagerplatz lagerplatz in Database.Lagerplatz.Include(x => x.Bestände).ToList().OrderBy(x => x.lpz_bezeichnung)) {
                 Lagerplätze.Add(lagerplatz);
             }
         }
