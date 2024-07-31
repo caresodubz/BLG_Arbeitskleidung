@@ -3,6 +3,7 @@
         AusgabeView,
         EinlagernView,
         BestandAnzeigenView,
-        LagerplatzHinzufügenView
+        LagerplatzHinzufügenView,
+        ArtikelVerwalten
     }
 }

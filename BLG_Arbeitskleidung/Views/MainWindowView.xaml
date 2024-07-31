@@ -28,6 +28,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <Button
@@ -97,7 +98,6 @@
                 FontWeight="Medium">
                 <StackPanel>
                     <TextBlock Text="BESTAND" TextAlignment="Center" />
-
                     <TextBlock Text="ANZEIGEN" TextAlignment="Center" />
                 </StackPanel>
                 <Button.Style>
@@ -126,7 +126,6 @@
                 FontWeight="Medium">
                 <StackPanel>
                     <TextBlock Text="LAGERPLATZ" TextAlignment="Center" />
-
                     <TextBlock Text="HINZUFÜGEN" TextAlignment="Center" />
                 </StackPanel>
                 <Button.Style>
@@ -134,6 +133,33 @@
                         <Setter Property="Background" Value="#A3D2FF" />
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding CurrentViewType}" Value="{x:Static vt:ViewType.LagerplatzHinzufügenView}">
+                                <Setter Property="Background" Value="#E9F0FF" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button
+                Grid.Row="4"
+                Grid.Column="0"
+                Width="150"
+                Height="80"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                BorderThickness="0"
+                Command="{Binding SwitchTabCommand}"
+                CommandParameter="{x:Static vt:ViewType.ArtikelVerwalten}"
+                FontSize="20"
+                FontWeight="Medium">
+                <StackPanel>
+                    <TextBlock Text="ARTIKEL" TextAlignment="Center" />
+                    <TextBlock Text="VERWALTEN" TextAlignment="Center" />
+                </StackPanel>
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="#A3D2FF" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding CurrentViewType}" Value="{x:Static vt:ViewType.ArtikelVerwalten}">
                                 <Setter Property="Background" Value="#E9F0FF" />
                             </DataTrigger>
                         </Style.Triggers>
