@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BLG_Arbeitskleidung.Database {
@@ -8,6 +9,10 @@ namespace BLG_Arbeitskleidung.Database {
         public int lagerp_id {  get; set; } = 0;
         public string lpz_bezeichnung { get; set; } = string.Empty;
         public int fuellstand { get; set; } = 0;
+
+        public int Füllmenge {
+            get { return Bestände.Sum(x => x.menge); }
+        }
         
         [ForeignKey(nameof(Bestand.lagerp_id))]
         public List<Bestand> Bestände { get; set; } = new();

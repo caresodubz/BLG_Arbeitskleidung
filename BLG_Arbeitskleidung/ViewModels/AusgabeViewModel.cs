@@ -126,7 +126,7 @@ namespace BLG_Arbeitskleidung.ViewModels {
                 VornameTextBox = true;
             }
 
-            if(string.IsNullOrWhiteSpace(Vorname)) {
+            if(string.IsNullOrWhiteSpace(Nachname)) {
                 NachnameTextBox = true;
             }
 

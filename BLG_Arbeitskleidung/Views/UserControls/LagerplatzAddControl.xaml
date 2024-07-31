@@ -52,12 +52,18 @@
             CanUserDeleteRows="False"
             CanUserReorderColumns="False"
             IsReadOnly="True"
-            ItemsSource="{Binding Lagerplätze}">
+            ItemsSource="{Binding Lagerplätze}"
+            >
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding lpz_bezeichnung, UpdateSourceTrigger=PropertyChanged}"
                     Header="Lagerplatz" />
+                <DataGridTextColumn                    
+                    Width="*"
+                    Binding="{Binding Füllmenge, UpdateSourceTrigger=PropertyChanged}"
+                    Header="Füllstand"
+                    />
                 <DataGridTemplateColumn Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate DataType="{x:Type db:Lagerplatz}">

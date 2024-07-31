@@ -233,7 +233,17 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     FontSize="18"
-                    Text="{Binding Nachname, UpdateSourceTrigger=PropertyChanged}" />
+                    Text="{Binding Nachname, UpdateSourceTrigger=PropertyChanged}">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding NachnameTextBox, UpdateSourceTrigger=PropertyChanged}" Value="true">
+                                    <Setter Property="BorderBrush" Value="Red" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
 
                 <TextBox
                     Grid.Row="3"
@@ -242,7 +252,17 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     FontSize="18"
-                    Text="{Binding PersNummer, UpdateSourceTrigger=PropertyChanged}" />
+                    Text="{Binding PersNummer, UpdateSourceTrigger=PropertyChanged}">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding PersNummerTextBox, UpdateSourceTrigger=PropertyChanged}" Value="true">
+                                    <Setter Property="BorderBrush" Value="Red" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
             </Grid>
         </Grid>
 
