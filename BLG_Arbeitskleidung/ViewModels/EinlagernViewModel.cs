@@ -66,6 +66,11 @@ namespace BLG_Arbeitskleidung.ViewModels {
         [RelayCommand]
         public void Einlagern() {
             try {
+                if(Menge <= 0) {
+                    MessageBox.Show("Es muss eine Menge eingegeben werden!", "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
                 Arbeitskleidung selectedArbeitskleidung = Arbeitskleidungen
                 .First(x => x.artikel_name == SelectedArtikelnamen && x.groesse == SelectedGröße);
 

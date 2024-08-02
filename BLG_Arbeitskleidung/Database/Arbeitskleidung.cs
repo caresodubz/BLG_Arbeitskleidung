@@ -16,6 +16,12 @@ namespace BLG_Arbeitskleidung.Database {
             }
         }
 
+        public string DisplayArtikelNameSize {
+            get {
+                return $"{artikel_name} ({artikel_nr}) - {groesse}";
+            }
+        }
+
         public int GesamtBestand {
             get {
                 return Bestände.Sum(x => x.menge);

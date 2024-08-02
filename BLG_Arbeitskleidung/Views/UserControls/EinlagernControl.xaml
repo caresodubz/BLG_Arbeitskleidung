@@ -50,25 +50,29 @@
                     Grid.Row="0"
                     VerticalAlignment="Center"
                     FontSize="18"
+                    FontWeight="Medium"
                     Text="Artikel-Nr.: " />
 
                 <TextBlock
                     Grid.Row="1"
                     VerticalAlignment="Center"
                     FontSize="18"
-                    Text="Größe: " />
+                    Text="Größe: "
+                    FontWeight="Medium"/>
 
                 <TextBlock
                     Grid.Row="2"
                     VerticalAlignment="Center"
                     FontSize="18"
-                    Text="Menge: " />
+                    Text="Menge: "
+                    FontWeight="Medium"/>
 
                 <TextBlock
                     Grid.Row="3"
                     VerticalAlignment="Center"
                     FontSize="18"
-                    Text="Lagerplatz: " />
+                    Text="Lagerplatz: "
+                    FontWeight="Medium"/>
 
             </Grid>
 
@@ -88,7 +92,8 @@
                     HorizontalAlignment="Left"
                     FontSize="18"
                     ItemsSource="{Binding Artikelnamen}"
-                    SelectedItem="{Binding SelectedArtikelnamen}" />
+                    SelectedItem="{Binding SelectedArtikelnamen}"
+                    VerticalContentAlignment="Center"/>
 
                 <ComboBox
                     Grid.Row="1"
@@ -97,7 +102,8 @@
                     HorizontalAlignment="Left"
                     FontSize="18"
                     ItemsSource="{Binding Größen}"
-                    SelectedItem="{Binding SelectedGröße}" />
+                    SelectedItem="{Binding SelectedGröße}"
+                    VerticalContentAlignment="Center"/>
 
                 <TextBox
                     Grid.Row="2"
@@ -106,6 +112,7 @@
                     HorizontalAlignment="Left"
                     FontSize="18"
                     PreviewTextInput="OnMengeTextInput"
+                    VerticalContentAlignment="Center"
                     Text="{Binding Menge, UpdateSourceTrigger=PropertyChanged}" />
 
                 <ComboBox
@@ -115,6 +122,7 @@
                     HorizontalAlignment="Left"
                     DisplayMemberPath="lpz_bezeichnung"
                     FontSize="18"
+                    VerticalContentAlignment="Center"
                     ItemsSource="{Binding Lagerplätze}"
                     SelectedItem="{Binding SelectedLagerplatz}" />
             </Grid>

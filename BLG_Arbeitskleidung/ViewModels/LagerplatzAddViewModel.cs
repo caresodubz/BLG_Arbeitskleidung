@@ -91,7 +91,7 @@ namespace BLG_Arbeitskleidung.ViewModels {
                 "Information", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch(Exception) {
-                MessageBox.Show("Fehler beim Anlegen in der Datenbank.",
+                MessageBox.Show("Fehler beim Anlegen in der Datenbank!",
                     "Fehlermeldung", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }

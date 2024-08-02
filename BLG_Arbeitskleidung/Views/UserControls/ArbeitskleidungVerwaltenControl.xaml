@@ -1,0 +1,81 @@
+﻿<UserControl x:Class="BLG_Arbeitskleidung.Views.UserControls.ArbeitskleidungVerwaltenControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:viewmodels="clr-namespace:BLG_Arbeitskleidung.ViewModels"
+             mc:Ignorable="d"
+             d:DesignHeight="800"
+             d:DesignWidth="1250"
+             d:Background="White"
+             d:DataContext="{d:DesignInstance Type=viewmodels:ArbeitskleidungVerwaltenViewModel}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="600"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Button
+            Grid.Row="1"
+            Height="60"
+            Width="150"
+            Background="White"
+            Content="SPEICHERN"
+            FontSize="18"
+            FontWeight="Medium"
+            Command="{Binding ArtikelHinzufügenCommand}"
+            />
+
+        <Grid Grid.Row="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+            <TextBlock
+                Grid.Column="0"
+                Text="Artikelnummer: *"
+                FontWeight="Medium"
+                Margin="50,100,0,468"
+                FontSize="18"
+                />
+
+            <TextBlock
+                Grid.Column="0"
+                Text="Artikel-Name: *"
+                FontWeight="Medium"
+                Margin="50,200,0,368"
+                FontSize="18"
+                />
+
+            <TextBlock
+                Grid.Column="0"
+                Text="Größe: *"
+                FontWeight="Medium"
+                Margin="50,300,0,268"
+                FontSize="18"
+                />
+
+            <TextBox
+                Grid.Column="1"
+                FontSize="18"
+                Margin="50,100,500,468"
+                Text="{Binding Artikel_Nr, UpdateSourceTrigger=PropertyChanged}"
+                />
+
+            <TextBox
+                Grid.Column="1"
+                FontSize="18"
+                Margin="50,200,500,368"
+                Text="{Binding Artikel_Name, UpdateSourceTrigger=PropertyChanged}"
+                />
+
+            <TextBox
+                Grid.Column="1"
+                FontSize="18"
+                Margin="50,300,500,268"
+                Text="{Binding Groesse, UpdateSourceTrigger=PropertyChanged}"
+                />
+            
+        </Grid>
+    </Grid>
+</UserControl>
