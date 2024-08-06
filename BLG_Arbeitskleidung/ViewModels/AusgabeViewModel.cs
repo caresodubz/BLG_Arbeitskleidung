@@ -189,7 +189,11 @@ namespace BLG_Arbeitskleidung.ViewModels {
                 SelectedBestände.Clear();
                 Bestände = [.. dbBestände.Where(x => x.menge > 0)];
             } catch(Exception) {
-                MessageBox.Show("Bestandsänderung kann nicht gespeichert werden!", "Fehlermeldung", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(
+                    "Bestandsänderung kann nicht gespeichert werden!", 
+                    "Fehlermeldung", 
+                    MessageBoxButton.OK, 
+                    MessageBoxImage.Error);
                 return;
             }
         }

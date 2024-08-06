@@ -28,14 +28,19 @@ namespace BLG_Arbeitskleidung.ViewModels {
             lagerplatz = Database.Lagerplatz.Include(x => x.Bestände).First(x => x.lagerp_id == lagerplatz.lagerp_id);
              
             if(lagerplatz.Bestände.Count > 0) {
-                MessageBox.Show($"Der Lagerplatz ist nicht leer, bitte leeren Sie zuvor alle Bestände!",
-                    "Warnung", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(
+                    $"Der Lagerplatz ist nicht leer, bitte leeren Sie zuvor alle Bestände!",
+                    "Warnung", 
+                    MessageBoxButton.OK, 
+                    MessageBoxImage.Warning);
                 return;
             }
 
             MessageBoxResult messageBoxResult = MessageBox.Show(
                 $"Sind Sie sich sicher, dass Sie den Lagerplatz \"{lagerplatz.lpz_bezeichnung}\" aus der Datenbank löschen wollen?",
-                "Abfrage", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                "Abfrage", 
+                MessageBoxButton.YesNo, 
+                MessageBoxImage.Warning);
             
             if(messageBoxResult != MessageBoxResult.Yes) {
                 return;
@@ -47,8 +52,11 @@ namespace BLG_Arbeitskleidung.ViewModels {
 
                 Lagerplätze.Remove(lagerplatz);
             } catch(Exception) {
-                MessageBox.Show("Der Lagerplatz konnte nicht gelöscht werden! Überprüfen Sie die Datenbankverbindung!",
-                    "Fehlermeldung", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(
+                    "Der Lagerplatz konnte nicht gelöscht werden! Überprüfen Sie die Datenbankverbindung!",
+                    "Fehlermeldung", 
+                    MessageBoxButton.OK, 
+                    MessageBoxImage.Error);
             }
         }
 
