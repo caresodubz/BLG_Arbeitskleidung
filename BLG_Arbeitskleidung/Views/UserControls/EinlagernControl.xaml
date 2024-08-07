@@ -113,7 +113,18 @@
                     FontSize="18"
                     PreviewTextInput="OnMengeTextInput"
                     VerticalContentAlignment="Center"
-                    Text="{Binding Menge, UpdateSourceTrigger=PropertyChanged}" />
+                    Text="{Binding Menge, UpdateSourceTrigger=PropertyChanged}">
+
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsMengeLeer, UpdateSourceTrigger=PropertyChanged}" Value="true">
+                                    <Setter Property="BorderBrush" Value="Red" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>  
 
                 <ComboBox
                     Grid.Row="3"

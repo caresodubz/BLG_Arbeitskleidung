@@ -23,6 +23,9 @@ namespace BLG_Arbeitskleidung.ViewModels {
             }
         }
 
+        [ObservableProperty]
+        public bool _IsLagerplatzLeer = false;
+
         [RelayCommand]
         protected void LagerplatzLöschen(Lagerplatz lagerplatz) {
             lagerplatz = Database.Lagerplatz.Include(x => x.Bestände).First(x => x.lagerp_id == lagerplatz.lagerp_id);
@@ -63,8 +66,13 @@ namespace BLG_Arbeitskleidung.ViewModels {
         [RelayCommand]
         protected void LagerplatzAnlegen() {
             if(string.IsNullOrWhiteSpace(LagerplatzName)) {
-                MessageBox.Show("Der angegebene Lagerplatzname darf nicht leer sein!",
-                    "Fehlermeldung", MessageBoxButton.OK, MessageBoxImage.Error);
+                IsLagerplatzLeer = true;
+                MessageBox.Show(
+                    "Der angegebene Lagerplatzname darf nicht leer sein!",
+                    "Fehlermeldung", 
+                    MessageBoxButton.OK, 
+                    MessageBoxImage.Error);
+                //IsLagerplatzLeer = true;
                 return;
             }
 

@@ -24,6 +24,9 @@ namespace BLG_Arbeitskleidung.ViewModels {
         [ObservableProperty]
         protected string _SelectedGröße = string.Empty;
 
+        [ObservableProperty]
+        protected bool _IsMengeLeer = false;
+
         public string[] Artikelnamen {
             get {
                 return Arbeitskleidungen.Select(x => x.artikel_name).Distinct().ToArray();
@@ -67,7 +70,12 @@ namespace BLG_Arbeitskleidung.ViewModels {
         public void Einlagern() {
             try {
                 if(Menge <= 0) {
-                    MessageBox.Show("Es muss eine Menge eingegeben werden!", "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
+                    IsMengeLeer = true;
+                    MessageBox.Show(
+                        "Es muss eine Menge eingegeben werden!", 
+                        "Fehler", 
+                        MessageBoxButton.OK, 
+                        MessageBoxImage.Error);
                     return;
                 }
 
@@ -76,7 +84,9 @@ namespace BLG_Arbeitskleidung.ViewModels {
 
                 MessageBoxResult messageBoxResult = MessageBox.Show(
                     $"Sind Sie sich sicher, dass Sie \"{selectedArbeitskleidung.artikel_name}\" ({selectedArbeitskleidung.artikel_nr}) einlagern wollen?",
-                    "Abfrage", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    "Abfrage", 
+                    MessageBoxButton.YesNo, 
+                    MessageBoxImage.Question);
                 if(messageBoxResult != MessageBoxResult.Yes) {
                     return;
                 }
@@ -96,11 +106,17 @@ namespace BLG_Arbeitskleidung.ViewModels {
 
                 Database.SaveChanges();
 
-                MessageBox.Show("Bestand erfolgreich eingelagert!", "Information", 
-                    MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(
+                    "Bestand erfolgreich eingelagert!", 
+                    "Information", 
+                    MessageBoxButton.OK, 
+                    MessageBoxImage.Information);
             } catch(Exception) {
-                MessageBox.Show("Fehler mit der Datenbankverbindung!", "Fehlermeldung", 
-                    MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(
+                    "Fehler mit der Datenbankverbindung!",
+                    "Fehlermeldung", 
+                    MessageBoxButton.OK, 
+                    MessageBoxImage.Error);
             }
         }
     }

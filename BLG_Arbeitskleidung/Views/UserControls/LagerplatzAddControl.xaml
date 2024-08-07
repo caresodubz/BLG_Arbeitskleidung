@@ -97,7 +97,7 @@
                 VerticalAlignment="Center"
                 FontSize="18"
                 FontWeight="Medium"
-                Text="Name: " />
+                Text="Name: *" />
 
             <TextBox
                 Grid.Column="2"
@@ -105,7 +105,18 @@
                 HorizontalAlignment="Left"
                 VerticalContentAlignment="Center"
                 FontSize="18"
-                Text="{Binding LagerplatzName}" />
+                Text="{Binding LagerplatzName}">
+
+                <TextBox.Style>
+                    <Style TargetType="TextBox">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsLagerplatzLeer, UpdateSourceTrigger=PropertyChanged}" Value="true">
+                                <Setter Property="BorderBrush" Value="Red" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
         </Grid>
     </Grid>
 </UserControl>

@@ -115,8 +115,10 @@ namespace BLG_Arbeitskleidung.ViewModels {
         [RelayCommand]
         protected void Drucken() {
             if(SelectedBestände.Count == 0) {
-                MessageBox.Show("Es wurden keine Artikel ausgewählt!", "Fehlermeldung",
-                    MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Es wurden keine Artikel ausgewählt!", 
+                    "Fehlermeldung",
+                    MessageBoxButton.OK, 
+                    MessageBoxImage.Error);
                 return;
             }
 
@@ -136,12 +138,20 @@ namespace BLG_Arbeitskleidung.ViewModels {
 
 
             if(string.IsNullOrWhiteSpace(Vorname) || string.IsNullOrWhiteSpace(Nachname) || string.IsNullOrWhiteSpace(PersNummer)) {
-                MessageBox.Show("Es wurden nicht alle Daten angegeben!", "Fehlermeldung", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(
+                    "Es wurden nicht alle Daten angegeben!", 
+                    "Fehlermeldung", 
+                    MessageBoxButton.OK, 
+                    MessageBoxImage.Error);
                 return;
             }        
 
-            MessageBoxResult promptResult = MessageBox.Show("Sind Sie sich sicher, ob die Angaben korrekt sind?", "Abfrage", 
-                MessageBoxButton.YesNo, MessageBoxImage.Question);
+            MessageBoxResult promptResult = MessageBox.Show(
+                "Sind Sie sich sicher, ob die Angaben korrekt sind?", 
+                "Abfrage", 
+                MessageBoxButton.YesNo, 
+                MessageBoxImage.Question);
+
             if(promptResult != MessageBoxResult.Yes) {
                 return;
             }
@@ -154,8 +164,12 @@ namespace BLG_Arbeitskleidung.ViewModels {
 
                 Process.Start(startInfo);
             } catch(Exception) {
-                MessageBoxResult messageBoxResult = MessageBox.Show("Datei konnte nicht geöffnet werden, wollen Sie sie speichern?",
-                    "Fehlermeldung", MessageBoxButton.YesNo, MessageBoxImage.Error);
+                MessageBoxResult messageBoxResult = MessageBox.Show(
+                    "Datei konnte nicht geöffnet werden, wollen Sie sie speichern?",
+                    "Fehlermeldung", 
+                    MessageBoxButton.YesNo, 
+                    MessageBoxImage.Error);
+
                 if(messageBoxResult == MessageBoxResult.Yes) {
                     SaveFileDialog saveFileDialog = new() {
                         AddExtension = true,
@@ -167,7 +181,11 @@ namespace BLG_Arbeitskleidung.ViewModels {
                         try {
                             File.Copy(filePath, saveFileDialog.FileName, overwrite: true);
                         } catch(Exception) {
-                            MessageBox.Show("Datei konnte nicht gespeichert werden!", "Fehlermeldung", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show(
+                                "Datei konnte nicht gespeichert werden!", 
+                                "Fehlermeldung", 
+                                MessageBoxButton.OK, 
+                                MessageBoxImage.Error);
                             return;
                         }
                     }
