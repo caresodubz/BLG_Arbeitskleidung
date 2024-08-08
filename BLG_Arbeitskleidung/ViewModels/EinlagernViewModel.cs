@@ -61,9 +61,8 @@ namespace BLG_Arbeitskleidung.ViewModels {
                     .ThenInclude(x => x.Lagerplatz)
                 .ToArray();
             Lagerplätze = Database.Lagerplatz.OrderBy(x => x.lpz_bezeichnung).ToArray();
-
-            SelectedLagerplatz = Lagerplätze.First();
-            SelectedArtikelnamen = Artikelnamen.First();
+            SelectedLagerplatz = Lagerplätze.FirstOrDefault()!;
+            SelectedArtikelnamen = Artikelnamen.FirstOrDefault()!;
         }
 
         [RelayCommand]

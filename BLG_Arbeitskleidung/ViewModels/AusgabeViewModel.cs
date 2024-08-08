@@ -114,16 +114,6 @@ namespace BLG_Arbeitskleidung.ViewModels {
 
         [RelayCommand]
         protected void Drucken() {
-            if(SelectedBestände.Count == 0) {
-                MessageBox.Show("Es wurden keine Artikel ausgewählt!", 
-                    "Fehlermeldung",
-                    MessageBoxButton.OK, 
-                    MessageBoxImage.Error);
-                return;
-            }
-
-
-            //ifs damit die jeweiligen textboxen rot werden wenn sie nicht ausgefüllt wurden
             if(string.IsNullOrWhiteSpace(Vorname)) {
                 VornameTextBox = true;
             }
@@ -135,6 +125,17 @@ namespace BLG_Arbeitskleidung.ViewModels {
             if(string.IsNullOrWhiteSpace(PersNummer)) {
                 PersNummerTextBox = true;
             }
+
+            if(SelectedBestände.Count == 0) {
+                MessageBox.Show("Es wurden keine Artikel ausgewählt!", 
+                    "Fehlermeldung",
+                    MessageBoxButton.OK, 
+                    MessageBoxImage.Error);
+                return;
+            }
+
+
+            //ifs damit die jeweiligen textboxen rot werden wenn sie nicht ausgefüllt wurden
 
 
             if(string.IsNullOrWhiteSpace(Vorname) || string.IsNullOrWhiteSpace(Nachname) || string.IsNullOrWhiteSpace(PersNummer)) {

@@ -1,4 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
+using System.IO;
+using static BLG_Arbeitskleidung.Database.BLGBestandDbContext;
 
 namespace BLG_Arbeitskleidung.Database {
     public class BLGBestandDbContext : DbContext {
@@ -8,8 +12,33 @@ namespace BLG_Arbeitskleidung.Database {
         public DbSet<Log> Log { get; set; }
         public DbSet<Bestand> Bestand { get; set; }
 
+
+        private readonly string _connectionString;
+
+        public IConfigurationRoot Configuration { get; set; } 
+
+        public BLGBestandDbContext() {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json");
+
+            Configuration = builder.Build();
+            _connectionString = Configuration.GetConnectionString("DefaultConnection");
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
-            optionsBuilder.UseSqlServer($@"Server=SQL2022TOM;Database=BLGBestandDB;Trusted_Connection=True;TrustServerCertificate=True;");
+            if(!optionsBuilder.IsConfigured) {
+                optionsBuilder.UseSqlServer(_connectionString);
+            }
+            //optionsBuilder.UseSqlServer($@"Server=SQL2022TOM;Database=BLGBestandDB;Trusted_Connection=True;TrustServerCertificate=True;");
+        }
+
+        public class AppSettings {
+            public ConnectionStrings ConnectionString = new();
+        }
+
+        public class ConnectionStrings {
+            public string DefaultConnection { get; set; } = string.Empty;
         }
     }
 }
