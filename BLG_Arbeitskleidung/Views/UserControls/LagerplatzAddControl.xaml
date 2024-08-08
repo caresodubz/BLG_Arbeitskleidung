@@ -7,7 +7,7 @@
     xmlns:local="clr-namespace:BLG_Arbeitskleidung.Views.UserControls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewmodels="clr-namespace:BLG_Arbeitskleidung.ViewModels"
-    d:Background="White"
+    
     d:DataContext="{d:DesignInstance Type=viewmodels:LagerplatzAddViewModel}"
     d:DesignHeight="800"
     d:DesignWidth="1250"

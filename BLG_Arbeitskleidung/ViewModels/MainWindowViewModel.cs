@@ -55,9 +55,14 @@ namespace BLG_Arbeitskleidung.ViewModels {
                 ContentView = new ArbeitskleidungVerwaltenControl() {
                     DataContext = new ArbeitskleidungVerwaltenViewModel(Database)
                 };
+                break;                
+            case ViewType.Log:
+                ContentView = new LogControl() {
+                    DataContext = new LogViewModel(Database)
+                };
                 break;
-                default:
-                    break;
+            default:
+                break;
             }
 
             CurrentViewType = viewtype;

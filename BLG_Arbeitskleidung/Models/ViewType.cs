@@ -4,6 +4,7 @@
         EinlagernView,
         BestandAnzeigenView,
         LagerplatzHinzufügenView,
-        ArbeitskleidungVerwalten
+        ArbeitskleidungVerwalten,
+        Log
     }
 }
