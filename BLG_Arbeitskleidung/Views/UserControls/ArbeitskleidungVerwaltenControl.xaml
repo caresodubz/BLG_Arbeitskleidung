@@ -41,7 +41,7 @@
 
             <TextBlock
                 Grid.Column="0"
-                Text="Artikel-Name: *"
+                Text="Artikelname: *"
                 FontWeight="Medium"
                 Margin="50,200,0,368"
                 FontSize="18"
