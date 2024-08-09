@@ -29,22 +29,22 @@ namespace BLG_Arbeitskleidung.ViewModels {
         [RelayCommand]
         protected void LagerplatzLöschen(Lagerplatz lagerplatz) {
             lagerplatz = Database.Lagerplatz.Include(x => x.Bestände).First(x => x.lagerp_id == lagerplatz.lagerp_id);
-             
+
             if(lagerplatz.Bestände.Count > 0) {
                 MessageBox.Show(
                     $"Der Lagerplatz ist nicht leer, bitte leeren Sie zuvor alle Bestände!",
-                    "Warnung", 
-                    MessageBoxButton.OK, 
+                    "Warnung",
+                    MessageBoxButton.OK,
                     MessageBoxImage.Warning);
                 return;
             }
 
             MessageBoxResult messageBoxResult = MessageBox.Show(
                 $"Sind Sie sich sicher, dass Sie den Lagerplatz \"{lagerplatz.lpz_bezeichnung}\" aus der Datenbank löschen wollen?",
-                "Abfrage", 
-                MessageBoxButton.YesNo, 
+                "Abfrage",
+                MessageBoxButton.YesNo,
                 MessageBoxImage.Warning);
-            
+
             if(messageBoxResult != MessageBoxResult.Yes) {
                 return;
             }
@@ -54,41 +54,35 @@ namespace BLG_Arbeitskleidung.ViewModels {
                 Database.SaveChanges();
 
                 Lagerplätze.Remove(lagerplatz);
-            } catch(Exception) {
+            }
+            catch(Exception) {
                 MessageBox.Show(
                     "Der Lagerplatz konnte nicht gelöscht werden! Überprüfen Sie die Datenbankverbindung!",
-                    "Fehlermeldung", 
-                    MessageBoxButton.OK, 
+                    "Fehlermeldung",
+                    MessageBoxButton.OK,
                     MessageBoxImage.Error);
             }
         }
 
         [RelayCommand]
         protected void LagerplatzAnlegen() {
-            if(string.IsNullOrWhiteSpace(LagerplatzName)) {
-                IsLagerplatzLeer = true;
-                MessageBox.Show(
-                    "Der angegebene Lagerplatzname darf nicht leer sein!",
-                    "Fehlermeldung", 
-                    MessageBoxButton.OK, 
-                    MessageBoxImage.Error);
-                //IsLagerplatzLeer = true;
-                return;
-            }
-
             try {
+                if(string.IsNullOrWhiteSpace(LagerplatzName)) {
+                    IsLagerplatzLeer = true;
+                    MessageBox.Show(
+                        "Der angegebene Lagerplatzname darf nicht leer sein!",
+                        "Fehlermeldung",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error);
+                    //IsLagerplatzLeer = true;
+                    return;
+                }
+
                 if(Database.Lagerplatz.Any(x => x.lpz_bezeichnung.ToLower() == LagerplatzName.ToLower())) {
                     MessageBox.Show("Der angegebene Lagerplatzname ist bereits vergeben!",
                         "Fehlermeldung", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
-                }
-
-                MessageBoxResult messageResult = MessageBox.Show(
-                    $"Sind Sie sicher das sie den Lagerplatz '{LagerplatzName}' anlegen wollen?",
-                    "Information", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-                if(messageResult == MessageBoxResult.No) {
-                    return;
-                }
+                }               
 
                 Lagerplatz lagerplatz = new() {
                     fuellstand = 0,
@@ -101,7 +95,7 @@ namespace BLG_Arbeitskleidung.ViewModels {
 
                 Lagerplätze.Add(lagerplatz);
                 Lagerplätze = Lagerplätze.OrderBy(x => x.lpz_bezeichnung).ToObservableCollection();
-                
+
 
                 MessageBox.Show("Lagerplatz wurde erfolgreich angelegt.",
                 "Information", MessageBoxButton.OK, MessageBoxImage.Information);

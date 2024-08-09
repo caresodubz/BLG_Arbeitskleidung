@@ -1,6 +1,7 @@
 ﻿using BLG_Arbeitskleidung.ViewModels;
 using BLG_Arbeitskleidung.Views;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace BLG_Arbeitskleidung {
 
@@ -23,7 +24,7 @@ namespace BLG_Arbeitskleidung {
         }
 
         private void OnExit(object sender, ExitEventArgs e) {
-
+            
         }
     }
 }

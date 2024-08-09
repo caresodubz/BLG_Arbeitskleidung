@@ -9,6 +9,7 @@ namespace BLG_Arbeitskleidung.ViewModels {
     public partial class EinlagernViewModel : ObservableObject {
         
         public BLGBestandDbContext Database {  get; set; }
+
         public Arbeitskleidung[] Arbeitskleidungen { get; }
         
         public Lagerplatz[] Lagerplätze { get; }
