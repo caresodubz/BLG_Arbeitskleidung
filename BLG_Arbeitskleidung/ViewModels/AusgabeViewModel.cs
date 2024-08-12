@@ -127,7 +127,8 @@ namespace BLG_Arbeitskleidung.ViewModels {
             }
 
             if(SelectedBestände.Count == 0) {
-                MessageBox.Show("Es wurden keine Artikel ausgewählt!", 
+                MessageBox.Show(
+                    "Es wurden keine Artikel ausgewählt!", 
                     "Fehlermeldung",
                     MessageBoxButton.OK, 
                     MessageBoxImage.Error);
