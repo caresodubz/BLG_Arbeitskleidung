@@ -89,7 +89,7 @@ namespace BLG_Arbeitskleidung.ViewModels {
             Arbeitskleidung arbeitskleidung = new() {
                 artikel_name = Artikel_Name,
                 artikel_nr = Artikel_Nr,
-                groesse = Groesse
+                groesse = Groesse.ToUpper(),
             };
 
             Database.Arbeitskleidung.Add(arbeitskleidung);
