@@ -79,8 +79,11 @@ namespace BLG_Arbeitskleidung.ViewModels {
                 }
 
                 if(Database.Lagerplatz.Any(x => x.lpz_bezeichnung.ToLower() == LagerplatzName.ToLower())) {
-                    MessageBox.Show("Der angegebene Lagerplatzname ist bereits vergeben!",
-                        "Fehlermeldung", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(
+                        "Der angegebene Lagerplatzname ist bereits vergeben!",
+                        "Fehlermeldung", 
+                        MessageBoxButton.OK, 
+                        MessageBoxImage.Error);
                     return;
                 }               
 
@@ -97,12 +100,18 @@ namespace BLG_Arbeitskleidung.ViewModels {
                 Lagerplätze = Lagerplätze.OrderBy(x => x.lpz_bezeichnung).ToObservableCollection();
 
 
-                MessageBox.Show("Lagerplatz wurde erfolgreich angelegt.",
-                "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(
+                    "Lagerplatz wurde erfolgreich angelegt.",
+                    "Information", 
+                    MessageBoxButton.OK, 
+                    MessageBoxImage.Information);
             }
             catch(Exception) {
-                MessageBox.Show("Fehler beim Anlegen in der Datenbank!",
-                    "Fehlermeldung", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(
+                    "Fehler beim Anlegen in der Datenbank!",
+                    "Fehlermeldung", 
+                    MessageBoxButton.OK, 
+                    MessageBoxImage.Error);
             }
         }
     }

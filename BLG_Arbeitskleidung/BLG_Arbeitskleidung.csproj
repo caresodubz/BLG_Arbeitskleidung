@@ -6,10 +6,15 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Resources\3668861-clothes-fashion-outfit-tshirt_108013.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="Resources\trashbin.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\3668861-clothes-fashion-outfit-tshirt_108013.ico" />
   </ItemGroup>
 
   <ItemGroup>
