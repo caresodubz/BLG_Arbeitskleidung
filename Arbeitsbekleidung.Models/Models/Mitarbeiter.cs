@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace BLG_Arbeitskleidung.Database {
-    [PrimaryKey("person_nr")]
+namespace Arbeitsbekleidung.Models.Models {
+    [PrimaryKey(nameof(person_nr))]
     public class Mitarbeiter {
         public string person_nr { get; set; } = string.Empty;
         public string vorname {  get; set; } = string.Empty;

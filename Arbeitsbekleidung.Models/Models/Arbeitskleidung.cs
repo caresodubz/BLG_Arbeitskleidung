@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
-
-namespace BLG_Arbeitskleidung.Database {
+ 
+namespace Arbeitsbekleidung.Models.Models {
     [PrimaryKey(nameof(artikel_id))]
     public class Arbeitskleidung {
         public int artikel_id { get; set; } = 0;

@@ -1,4 +1,4 @@
-﻿using BLG_Arbeitskleidung.Database;
+﻿//using BLG_Arbeitskleidung.Database;
 using BLG_Arbeitskleidung.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -8,11 +8,13 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Windows;
+using Arbeitsbekleidung.Models.Models;
+using Arbeitsbekleidung.Database.Database;
 
 namespace BLG_Arbeitskleidung.ViewModels {
     public partial class AusgabeViewModel : ObservableObject {
 
-        public BLGBestandDbContext Database { get; set; }
+        public BLGBestandDbContext Database { get; set; } = new();
 
         [ObservableProperty]
         protected ObservableCollection<Bestand> _Bestände = [];
@@ -134,7 +136,6 @@ namespace BLG_Arbeitskleidung.ViewModels {
                     MessageBoxImage.Error);
                 return;
             }
-
 
             //ifs damit die jeweiligen textboxen rot werden wenn sie nicht ausgefüllt wurden
 

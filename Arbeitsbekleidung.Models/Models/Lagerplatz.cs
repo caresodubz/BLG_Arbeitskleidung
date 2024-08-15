@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BLG_Arbeitskleidung.Database {
-    [PrimaryKey("lagerp_id")]
+namespace Arbeitsbekleidung.Models.Models {
+    [PrimaryKey(nameof(lagerp_id))]
     public class Lagerplatz {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int lagerp_id {  get; set; } = 0;

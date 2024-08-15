@@ -1,6 +1,7 @@
-﻿using BLG_Arbeitskleidung.Database;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.ObjectModel;
+using Arbeitsbekleidung.Models.Models;
+using Arbeitsbekleidung.Database.Database;
 
 namespace BLG_Arbeitskleidung.ViewModels {
     public partial class LogViewModel : ObservableObject {

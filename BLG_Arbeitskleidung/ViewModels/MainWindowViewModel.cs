@@ -1,11 +1,11 @@
-﻿using BLG_Arbeitskleidung.Database;
-using BLG_Arbeitskleidung.Models;
+﻿using BLG_Arbeitskleidung.Models;
 using BLG_Arbeitskleidung.Views.UserControls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using DocumentFormat.OpenXml.Spreadsheet;
 using Microsoft.EntityFrameworkCore;
 using System.Windows;
+using Arbeitsbekleidung.Models.Models;
+using Arbeitsbekleidung.Database.Database;
 
 namespace BLG_Arbeitskleidung.ViewModels {
     partial class MainWindowViewModel : ObservableObject {

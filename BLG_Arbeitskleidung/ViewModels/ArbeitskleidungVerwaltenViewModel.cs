@@ -1,7 +1,8 @@
-﻿using BLG_Arbeitskleidung.Database;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Windows;
+using Arbeitsbekleidung.Models.Models;
+using Arbeitsbekleidung.Database.Database;
 
 namespace BLG_Arbeitskleidung.ViewModels {
     public partial class ArbeitskleidungVerwaltenViewModel : ObservableObject {
@@ -24,10 +25,8 @@ namespace BLG_Arbeitskleidung.ViewModels {
         [ObservableProperty]
         private bool _av_groesse = false;
 
-       
 
-
-    public Arbeitskleidung arbeitskleidung { get; set; }
+        public Arbeitskleidung arbeitskleidung { get; set; }
 
 
     public ArbeitskleidungVerwaltenViewModel(BLGBestandDbContext database) {
@@ -86,7 +85,7 @@ namespace BLG_Arbeitskleidung.ViewModels {
                 return;
             }
 
-            Arbeitskleidung arbeitskleidung = new() {
+                Arbeitsbekleidung.Models.Models.Arbeitskleidung arbeitskleidung = new() {
                 artikel_name = Artikel_Name,
                 artikel_nr = Artikel_Nr,
                 groesse = Groesse.ToUpper(),

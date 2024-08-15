@@ -1,10 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Arbeitsbekleidung.Models.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
 using System.IO;
-using static BLG_Arbeitskleidung.Database.BLGBestandDbContext;
 
-namespace BLG_Arbeitskleidung.Database {
+namespace Arbeitsbekleidung.Database.Database {
     public class BLGBestandDbContext : DbContext {
         public DbSet<Mitarbeiter> Mitarbeiter { get; set; }
         public DbSet<Lagerplatz> Lagerplatz {  get; set; }
@@ -23,7 +22,7 @@ namespace BLG_Arbeitskleidung.Database {
                 .AddJsonFile("appsettings.json");
 
             Configuration = builder.Build();
-            _connectionString = Configuration.GetConnectionString("DefaultConnection");
+            _connectionString = Configuration.GetConnectionString("secondConnection")!;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {

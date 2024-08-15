@@ -1,7 +1,7 @@
-﻿using BLG_Arbeitskleidung.Database;
-using DocumentFormat.OpenXml.Packaging;
+﻿using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 using System.IO;
+using Arbeitsbekleidung.Models.Models;
 
 namespace BLG_Arbeitskleidung.Models {
     public static class BLGWordAusgabeFactory {
