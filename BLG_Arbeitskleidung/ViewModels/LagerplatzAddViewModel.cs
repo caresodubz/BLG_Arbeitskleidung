@@ -13,14 +13,14 @@ namespace BLG_Arbeitskleidung.ViewModels {
         protected string _LagerplatzName = string.Empty;
 
         [ObservableProperty]
-        protected ObservableCollection<Lagerplatz> _Lagerplätze = [];
+        protected ObservableCollection<Lagerplatz> _Lagerplaetze = [];
 
         public BLGBestandDbContext Database { get; set; }
 
         public LagerplatzAddViewModel(BLGBestandDbContext database) {
             Database = database;
-            foreach(Lagerplatz lagerplatz in Database.Lagerplatz.Include(x => x.Bestände).ToList().OrderBy(x => x.lpz_bezeichnung)) {
-                Lagerplätze.Add(lagerplatz);
+            foreach(Lagerplatz lagerplatz in Database.Lagerplatz.Include(x => x.Bestaende).ToList().OrderBy(x => x.lpz_bezeichnung)) {
+                Lagerplaetze.Add(lagerplatz);
             }
         }
 
@@ -29,9 +29,9 @@ namespace BLG_Arbeitskleidung.ViewModels {
 
         [RelayCommand]
         protected void LagerplatzLöschen(Lagerplatz lagerplatz) {
-            lagerplatz = Database.Lagerplatz.Include(x => x.Bestände).First(x => x.lagerp_id == lagerplatz.lagerp_id);
+            lagerplatz = Database.Lagerplatz.Include(x => x.Bestaende).First(x => x.lagerp_id == lagerplatz.lagerp_id);
 
-            if(lagerplatz.Bestände.Count > 0) {
+            if(lagerplatz.Bestaende.Count > 0) {
                 MessageBox.Show(
                     $"Der Lagerplatz ist nicht leer, bitte leeren Sie zuvor alle Bestände!",
                     "Warnung",
@@ -54,7 +54,7 @@ namespace BLG_Arbeitskleidung.ViewModels {
                 Database.Remove(lagerplatz);
                 Database.SaveChanges();
 
-                Lagerplätze.Remove(lagerplatz);
+                Lagerplaetze.Remove(lagerplatz);
             }
             catch(Exception) {
                 MessageBox.Show(
@@ -91,14 +91,14 @@ namespace BLG_Arbeitskleidung.ViewModels {
                 Lagerplatz lagerplatz = new() {
                     fuellstand = 0,
                     lpz_bezeichnung = LagerplatzName,
-                    Bestände = []
+                    Bestaende = []
                 };
 
                 Database.Lagerplatz.Add(lagerplatz);
                 Database.SaveChanges();
 
-                Lagerplätze.Add(lagerplatz);
-                Lagerplätze = Lagerplätze.OrderBy(x => x.lpz_bezeichnung).ToObservableCollection();
+                Lagerplaetze.Add(lagerplatz);
+                Lagerplaetze = Lagerplaetze.OrderBy(x => x.lpz_bezeichnung).ToObservableCollection();
 
 
                 MessageBox.Show(

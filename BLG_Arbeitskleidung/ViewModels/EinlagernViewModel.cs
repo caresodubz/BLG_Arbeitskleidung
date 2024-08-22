@@ -13,18 +13,18 @@ namespace BLG_Arbeitskleidung.ViewModels {
 
         public Arbeitskleidung[] Arbeitskleidungen { get; }
         
-        public Lagerplatz[] Lagerplätze { get; }
+        public Lagerplatz[] Lagerplaetze { get; }
 
         [ObservableProperty]
-        protected Lagerplatz _SelectedLagerplatz;
+        protected Lagerplatz _AusgewaehlterLagerplatz;
 
         [ObservableProperty]
         protected int _Menge = 0;
 
-        public ObservableCollection<string> Größen { get; } = new();
+        public ObservableCollection<string> Groeßen { get; } = new();
         
         [ObservableProperty]
-        protected string _SelectedGröße = string.Empty;
+        protected string _AusgwaehlteGroesse = string.Empty;
 
         [ObservableProperty]
         protected bool _IsMengeLeer = false;
@@ -35,23 +35,23 @@ namespace BLG_Arbeitskleidung.ViewModels {
             }
         }
 
-        private string _SelectedArtikelnamen = string.Empty;
-        public string SelectedArtikelnamen {
+        private string _AusgewaehlteArtikelnamen = string.Empty;
+        public string AusgewaehlteArtikelnamen {
             get {
-                return _SelectedArtikelnamen;
+                return _AusgewaehlteArtikelnamen;
             }
 
             set {
-                _SelectedArtikelnamen = value;
-                Größen.Clear();
+                _AusgewaehlteArtikelnamen = value;
+                Groeßen.Clear();
                 foreach(string größe in Arbeitskleidungen
-                    .Where(x => x.artikel_name == _SelectedArtikelnamen)
+                    .Where(x => x.artikel_name == _AusgewaehlteArtikelnamen)
                     .Select(x => x.groesse)
                     .Distinct()) {
-                    Größen.Add(größe);
+                    Groeßen.Add(größe);
                 }
 
-                SelectedGröße = Größen.FirstOrDefault() ?? string.Empty;
+                AusgwaehlteGroesse = Groeßen.FirstOrDefault() ?? string.Empty;
                 OnPropertyChanged();
             }
         }
@@ -62,9 +62,9 @@ namespace BLG_Arbeitskleidung.ViewModels {
                 .Include(x => x.Bestände)
                     .ThenInclude(x => x.Lagerplatz)
                 .ToArray();
-            Lagerplätze = Database.Lagerplatz.OrderBy(x => x.lpz_bezeichnung).ToArray();
-            SelectedLagerplatz = Lagerplätze.FirstOrDefault()!;
-            SelectedArtikelnamen = Artikelnamen.FirstOrDefault()!;
+            Lagerplaetze = Database.Lagerplatz.OrderBy(x => x.lpz_bezeichnung).ToArray();
+            AusgewaehlterLagerplatz = Lagerplaetze.FirstOrDefault()!;
+            AusgewaehlteArtikelnamen = Artikelnamen.FirstOrDefault()!;
         }
 
         [RelayCommand]
@@ -81,7 +81,7 @@ namespace BLG_Arbeitskleidung.ViewModels {
                 }
 
                 Arbeitskleidung selectedArbeitskleidung = Arbeitskleidungen
-                .First(x => x.artikel_name == SelectedArtikelnamen && x.groesse == SelectedGröße);
+                .First(x => x.artikel_name == AusgewaehlteArtikelnamen && x.groesse == AusgwaehlteGroesse);
 
                 MessageBoxResult messageBoxResult = MessageBox.Show(
                     $"Sind Sie sich sicher, dass Sie \"{selectedArbeitskleidung.artikel_name}\" ({selectedArbeitskleidung.artikel_nr}) einlagern wollen?",
@@ -92,13 +92,13 @@ namespace BLG_Arbeitskleidung.ViewModels {
                     return;
                 }
 
-                Bestand? bestand = Database.Bestand.FirstOrDefault(x => x.artikel_id == selectedArbeitskleidung.artikel_id && x.lagerp_id == SelectedLagerplatz.lagerp_id);
+                Bestand? bestand = Database.Bestand.FirstOrDefault(x => x.artikel_id == selectedArbeitskleidung.artikel_id && x.lagerp_id == AusgewaehlterLagerplatz.lagerp_id);
                 if(bestand != null) {
                     bestand.menge += Menge;
                 } else {
                     bestand = new() {
                         Arbeitskleidung = selectedArbeitskleidung,
-                        Lagerplatz = SelectedLagerplatz,
+                        Lagerplatz = AusgewaehlterLagerplatz,
                         menge = Menge,
                     };
 

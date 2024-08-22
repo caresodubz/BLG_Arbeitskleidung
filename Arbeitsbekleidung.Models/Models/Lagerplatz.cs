@@ -10,11 +10,11 @@ namespace Arbeitsbekleidung.Models.Models {
         public int fuellstand { get; set; } = 0;
 
         public int Füllmenge {
-            get { return Bestände.Sum(x => x.menge); }
+            get { return Bestaende.Sum(x => x.menge); }
         }
         
         [ForeignKey(nameof(Bestand.lagerp_id))]
-        public List<Bestand> Bestände { get; set; } = new();
+        public List<Bestand> Bestaende { get; set; } = new();
         
     }
 }

@@ -5,7 +5,7 @@ using Arbeitsbekleidung.Models.Models;
 
 namespace BLG_Arbeitskleidung.Models {
     public static class BLGWordAusgabeFactory {
-        public static string CreateAusgabeFile(string name, string personalNr, Bestand[] bestände) {
+        public static string CreateOutputFile(string name, string personalNr, Bestand[] bestände) {
             string tempPath = Path.GetTempFileName();
             string filePath = Path.ChangeExtension(tempPath, ".docx");
             File.Copy("./Lieferschein_Arbeitskleidung.docx", filePath, overwrite: true);

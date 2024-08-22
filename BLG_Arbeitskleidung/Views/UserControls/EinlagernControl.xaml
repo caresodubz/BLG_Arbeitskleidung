@@ -92,7 +92,7 @@
                     HorizontalAlignment="Left"
                     FontSize="18"
                     ItemsSource="{Binding Artikelnamen}"
-                    SelectedItem="{Binding SelectedArtikelnamen}"
+                    SelectedItem="{Binding AusgewaehlteArtikelnamen}"
                     VerticalContentAlignment="Center"/>
 
                 <ComboBox
@@ -101,8 +101,8 @@
                     Height="50"
                     HorizontalAlignment="Left"
                     FontSize="18"
-                    ItemsSource="{Binding Größen}"
-                    SelectedItem="{Binding SelectedGröße}"
+                    ItemsSource="{Binding Groeßen}"
+                    SelectedItem="{Binding AusgwaehlteGroesse}"
                     VerticalContentAlignment="Center"/>
 
                 <TextBox
@@ -134,8 +134,8 @@
                     DisplayMemberPath="lpz_bezeichnung"
                     FontSize="18"
                     VerticalContentAlignment="Center"
-                    ItemsSource="{Binding Lagerplätze}"
-                    SelectedItem="{Binding SelectedLagerplatz}" />
+                    ItemsSource="{Binding Lagerplaetze}"
+                    SelectedItem="{Binding AusgewaehlterLagerplatz}" />
             </Grid>
         </Grid>
     </Grid>

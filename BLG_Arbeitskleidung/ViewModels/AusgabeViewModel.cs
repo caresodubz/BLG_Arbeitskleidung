@@ -159,7 +159,7 @@ namespace BLG_Arbeitskleidung.ViewModels {
                 return;
             }
 
-            string filePath = BLGWordAusgabeFactory.CreateAusgabeFile($"{Vorname} {Nachname}", PersNummer, SelectedBestände.ToArray());
+            string filePath = BLGWordAusgabeFactory.CreateOutputFile($"{Vorname} {Nachname}", PersNummer, SelectedBestände.ToArray());
             try {
                 ProcessStartInfo startInfo = new(filePath) {
                     UseShellExecute = true,

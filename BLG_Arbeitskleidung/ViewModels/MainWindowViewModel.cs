@@ -23,7 +23,7 @@ namespace BLG_Arbeitskleidung.ViewModels {
             SwitchTab(ViewType.AusgabeView);
             
             Lagerplatz[] lagerplätze = Database.Lagerplatz
-                .Include(x => x.Bestände)
+                .Include(x => x.Bestaende)
                     .ThenInclude(x => x.Arbeitskleidung)
                 .ToArray();
         }

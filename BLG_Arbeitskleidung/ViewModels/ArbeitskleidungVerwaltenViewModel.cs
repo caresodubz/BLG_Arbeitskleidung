@@ -6,7 +6,7 @@ using Arbeitsbekleidung.Database.Database;
 
 namespace BLG_Arbeitskleidung.ViewModels {
     public partial class ArbeitskleidungVerwaltenViewModel : ObservableObject {
-        public BLGBestandDbContext Database { get; set; }
+        public BLGBestandDbContext Database { get; set; } = new();
 
         [ObservableProperty]
         protected string _Artikel_Nr = string.Empty;
@@ -85,7 +85,7 @@ namespace BLG_Arbeitskleidung.ViewModels {
                 return;
             }
 
-                Arbeitsbekleidung.Models.Models.Arbeitskleidung arbeitskleidung = new() {
+                Arbeitskleidung arbeitskleidung = new() {
                 artikel_name = Artikel_Name,
                 artikel_nr = Artikel_Nr,
                 groesse = Groesse.ToUpper(),
