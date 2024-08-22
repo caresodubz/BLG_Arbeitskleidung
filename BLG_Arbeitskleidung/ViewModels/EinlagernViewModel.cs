@@ -29,6 +29,8 @@ namespace BLG_Arbeitskleidung.ViewModels {
         [ObservableProperty]
         protected bool _IsMengeLeer = false;
 
+      
+
         public string[] Artikelnamen {
             get {
                 return Arbeitskleidungen.Select(x => x.artikel_name).Distinct().ToArray();

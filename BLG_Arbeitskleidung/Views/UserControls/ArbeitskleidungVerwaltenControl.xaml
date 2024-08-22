@@ -10,7 +10,7 @@
              d:DataContext="{d:DesignInstance Type=viewmodels:ArbeitskleidungVerwaltenViewModel}">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="600"/>
+            <RowDefinition Height="500"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
@@ -26,40 +26,72 @@
             />
 
         <Grid Grid.Row="0">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="80"/>
+                </Grid.RowDefinitions>
+                
             <TextBlock
-                Grid.Column="0"
+                Grid.Row="1"
                 Text="Artikelnummer: *"
-                FontWeight="Medium"
-                Margin="50,100,0,468"
+                FontWeight="Medium"               
                 FontSize="18"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Left"
                 />
-
+                
             <TextBlock
-                Grid.Column="0"
+                Grid.Row="2"
                 Text="Artikelname: *"
-                FontWeight="Medium"
-                Margin="50,200,0,368"
+                FontWeight="Medium"                
                 FontSize="18"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Left"
+                />
+            
+            <TextBlock
+                Grid.Row="3"
+                Text="Größe: *"
+                FontWeight="Medium"               
+                FontSize="18"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Left"
                 />
 
             <TextBlock
-                Grid.Column="0"
-                Text="Größe: *"
-                FontWeight="Medium"
-                Margin="50,300,0,268"
+                Grid.Row="4"
+                Text="Mindestbestand: *"
+                FontWeight="Medium"               
                 FontSize="18"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Left"
                 />
+
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="80"/>
+                </Grid.RowDefinitions>
 
             <TextBox
-                Grid.Column="1"
+                Grid.Row="1"    
                 VerticalContentAlignment="Center"
-                FontSize="18"
-                Margin="50,100,500,468"
+                FontSize="18"  
+                Margin="20,20,300,20"
                 Text="{Binding Artikel_Nr, UpdateSourceTrigger=PropertyChanged}">
                 <TextBox.Style>
                     <Style TargetType="TextBox">
@@ -71,12 +103,12 @@
                     </Style>
                 </TextBox.Style>
             </TextBox>
-
+                
             <TextBox
-                Grid.Column="1"
+                Grid.Row="2"
                 VerticalContentAlignment="Center"
                 FontSize="18"
-                Margin="50,200,500,368"
+                Margin="20,20,300,20"
                 Text="{Binding Artikel_Name, UpdateSourceTrigger=PropertyChanged}">
                 <TextBox.Style>
                     <Style TargetType="TextBox">
@@ -88,12 +120,13 @@
                     </Style>
                 </TextBox.Style>
             </TextBox>
-
+                
+                
             <TextBox
-                Grid.Column="1"
+                Grid.Row="3"
                 VerticalContentAlignment="Center"
                 FontSize="18"
-                Margin="50,300,500,268"
+                Margin="20,20,300,20"
                 Text="{Binding Groesse, UpdateSourceTrigger=PropertyChanged}">
                 <TextBox.Style>
                     <Style TargetType="TextBox">
@@ -105,6 +138,24 @@
                     </Style>
                 </TextBox.Style>
             </TextBox>
+
+                <TextBox
+                        Grid.Row="4"
+                        VerticalContentAlignment="Center"
+                        FontSize="18"
+                        Margin="20,20,300,20"
+                        Text="{Binding Mindestmenge, UpdateSourceTrigger=PropertyChanged}">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Av_mindestmenge, UpdateSourceTrigger=PropertyChanged}" Value="true">
+                                    <Setter Property="BorderBrush" Value="Red" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>

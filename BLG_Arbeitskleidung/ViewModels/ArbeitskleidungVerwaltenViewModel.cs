@@ -15,99 +15,116 @@ namespace BLG_Arbeitskleidung.ViewModels {
         protected string _Artikel_Name = string.Empty;
 
         [ObservableProperty]
+        protected string _Mindestmenge = string.Empty;
+
+        [ObservableProperty]
         protected string _Groesse = string.Empty;
 
         [ObservableProperty]
         protected bool _av_artikelnr = false;
+
         [ObservableProperty]
         protected bool _av_artikelname = false;
 
         [ObservableProperty]
-        private bool _av_groesse = false;
+        protected bool _av_groesse = false;
+
+        [ObservableProperty]
+        private bool _av_mindestmenge = false;
 
 
-        public Arbeitskleidung arbeitskleidung { get; set; }
 
 
-    public ArbeitskleidungVerwaltenViewModel(BLGBestandDbContext database) {
-        Database = database;
-    }
 
-    [RelayCommand]
-    protected void ArtikelHinzufügen() {
-        if(string.IsNullOrWhiteSpace(Artikel_Nr)) {
-            Av_artikelnr = true;
-        }
-        else {
-            Av_artikelnr = false;
+
+        public ArbeitskleidungVerwaltenViewModel(BLGBestandDbContext database) {
+            Database = database;
         }
 
-        if(string.IsNullOrWhiteSpace(Artikel_Name)) {
-            Av_artikelname = true;
-        }
-        else {
-            Av_artikelname = false;
-        }
+        [RelayCommand]
+        protected void ArtikelHinzufügen() {
+            if(string.IsNullOrWhiteSpace(Artikel_Nr)) {
+                Av_artikelnr = true;
+            }
+            else {
+                Av_artikelnr = false;
+            }
 
-        if(string.IsNullOrWhiteSpace(Groesse)) {
-            Av_groesse = true;
-        }
-        else {
-            Av_groesse = false;
-        }
+            if(string.IsNullOrWhiteSpace(Artikel_Name)) {
+                Av_artikelname = true;
+            }
+            else {
+                Av_artikelname = false;
+            }
 
-        if(string.IsNullOrWhiteSpace(Artikel_Nr) || string.IsNullOrWhiteSpace(Artikel_Name) || string.IsNullOrWhiteSpace(Groesse)) {
-            MessageBox.Show(
-                "Einige Pflichtfelder wurden nicht korrekt ausgefüllt!",
-                "Warnung",
-                MessageBoxButton.OK,
-                MessageBoxImage.Error);
-            return;
-        }
+            if(string.IsNullOrWhiteSpace(Groesse)) {
+                Av_groesse = true;
+            }
+            else {
+                Av_groesse = false;
+            }
 
-        MessageBoxResult messageBoxResult = MessageBox.Show(
-            $"Sind sie sicher, dass Sie diesen Artikel ({Artikel_Name}, {Artikel_Nr}) anlegen möchten?",
-            "Information",
-            MessageBoxButton.YesNo,
-            MessageBoxImage.Question);
+            if(string.IsNullOrWhiteSpace(Mindestmenge)) {
+                Av_mindestmenge = true;
+            }
+            else {
+                Av_mindestmenge = false;
+            }
 
-        if(messageBoxResult != MessageBoxResult.Yes) {
-            return;
-        }
 
-        try {
-            if(Database.Arbeitskleidung.Any(x => x.artikel_nr.ToLower() == Artikel_Nr.ToLower())) {
+
+            if(string.IsNullOrWhiteSpace(Artikel_Nr) || string.IsNullOrWhiteSpace(Artikel_Name) || string.IsNullOrWhiteSpace(Groesse)) {
                 MessageBox.Show(
-                    $"Die eingegebene Artikelnummer ist nicht eindeutig! Es gibt bereits einen Artikel mit dieser Artikelnummer ({Artikel_Nr})",
-                    "Error",
+                    "Einige Pflichtfelder wurden nicht korrekt ausgefüllt!",
+                    "Warnung",
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);
                 return;
             }
 
-                Arbeitskleidung arbeitskleidung = new() {
-                artikel_name = Artikel_Name,
-                artikel_nr = Artikel_Nr,
-                groesse = Groesse.ToUpper(),
-            };
-
-            Database.Arbeitskleidung.Add(arbeitskleidung);
-            Database.SaveChanges();
-
-
-            MessageBox.Show(
-                "Artikel wurde erfolgreich angelegt!",
+            MessageBoxResult messageBoxResult = MessageBox.Show(
+                $"Sind sie sicher, dass Sie diesen Artikel ({Artikel_Name}, {Artikel_Nr}) anlegen möchten?",
                 "Information",
-                MessageBoxButton.OK,
-                MessageBoxImage.Information);
-        }
-        catch(Exception) {
-            MessageBox.Show(
-                "Fehler beim Anlegen in der Datenbank!",
-                "Fehlermeldung",
-                MessageBoxButton.OK,
-                MessageBoxImage.Error);
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question);
+
+            if(messageBoxResult != MessageBoxResult.Yes) {
+                return;
+            }
+
+            try {
+                if(Database.Arbeitskleidung.Any(x => x.artikel_nr.ToLower() == Artikel_Nr.ToLower())) {
+                    MessageBox.Show(
+                        $"Die eingegebene Artikelnummer ist nicht eindeutig! Es gibt bereits einen Artikel mit dieser Artikelnummer ({Artikel_Nr})",
+                        "Error",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error);
+                    return;
+                }
+
+                Arbeitskleidung arbeitskleidung = new() {
+                    artikel_name = Artikel_Name,
+                    artikel_nr = Artikel_Nr,
+                    groesse = Groesse.ToUpper(),
+                };
+
+                Database.Arbeitskleidung.Add(arbeitskleidung);
+                Database.SaveChanges();
+
+
+                MessageBox.Show(
+                    "Artikel wurde erfolgreich angelegt!",
+                    "Information",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
+            }
+            catch(Exception) {
+                MessageBox.Show(
+                    "Fehler beim Anlegen in der Datenbank!",
+                    "Fehlermeldung",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
         }
     }
-}
 }
