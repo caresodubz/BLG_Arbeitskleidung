@@ -43,7 +43,8 @@
                     <RowDefinition Height="100" />
                     <RowDefinition Height="100" />
                     <RowDefinition Height="100" />
-                    <RowDefinition Height="100" />                    
+                    <RowDefinition Height="100" />
+                    <RowDefinition Height="100" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
@@ -74,6 +75,15 @@
                     FontSize="18"
                     Text="Lagerplatz: "
                     FontWeight="Medium"/>
+
+                <TextBlock
+                    Grid.Row="4"
+                    VerticalAlignment="Top"
+                    FontSize="18"
+                    Text="Bemerkung: "
+                    FontWeight="Medium"                    
+                    />
+                
             </Grid>
 
             <Grid Grid.Column="1">
@@ -81,7 +91,8 @@
                     <RowDefinition Height="100" />
                     <RowDefinition Height="100" />
                     <RowDefinition Height="100" />
-                    <RowDefinition Height="100" />                    
+                    <RowDefinition Height="100" />
+                    <RowDefinition Height="100" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
@@ -136,6 +147,14 @@
                     VerticalContentAlignment="Center"
                     ItemsSource="{Binding Lagerplaetze}"
                     SelectedItem="{Binding AusgewaehlterLagerplatz}" 
+                    />
+
+                <TextBox
+                    Grid.Row="4"
+                    FontSize="18"
+                    VerticalScrollBarVisibility="Visible"  
+                    MaxWidth="600"
+                    TextWrapping="Wrap"
                     />
             </Grid>
         </Grid>

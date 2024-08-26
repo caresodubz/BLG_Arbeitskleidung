@@ -12,5 +12,9 @@ namespace BLG_Arbeitskleidung.Views.UserControls {
                 e.Handled = true;
             }
         }
+
+        private void TextBox_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e) {
+
+        }
     }
 }
