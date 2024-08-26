@@ -15,7 +15,7 @@ namespace BLG_Arbeitskleidung.ViewModels {
         protected string _Artikel_Name = string.Empty;
 
         [ObservableProperty]
-        protected string _Mindestmenge = string.Empty;
+        protected string _Meldegrenze = string.Empty;
 
         [ObservableProperty]
         protected string _Groesse = string.Empty;
@@ -30,11 +30,7 @@ namespace BLG_Arbeitskleidung.ViewModels {
         protected bool _av_groesse = false;
 
         [ObservableProperty]
-        private bool _av_mindestmenge = false;
-
-
-
-
+        private bool _av_meldegrenze = false;
 
 
         public ArbeitskleidungVerwaltenViewModel(BLGBestandDbContext database) {
@@ -64,12 +60,14 @@ namespace BLG_Arbeitskleidung.ViewModels {
                 Av_groesse = false;
             }
 
-            if(string.IsNullOrWhiteSpace(Mindestmenge)) {
-                Av_mindestmenge = true;
+            if(string.IsNullOrWhiteSpace(Meldegrenze)) {
+                Av_meldegrenze = true;
             }
             else {
-                Av_mindestmenge = false;
+                Av_meldegrenze = false;
             }
+
+            
 
 
 
@@ -106,6 +104,7 @@ namespace BLG_Arbeitskleidung.ViewModels {
                     artikel_name = Artikel_Name,
                     artikel_nr = Artikel_Nr,
                     groesse = Groesse.ToUpper(),
+                    meldegrenze = Convert.ToInt32(Meldegrenze)
                 };
 
                 Database.Arbeitskleidung.Add(arbeitskleidung);

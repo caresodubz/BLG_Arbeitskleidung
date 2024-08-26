@@ -16,7 +16,7 @@ namespace BLG_Arbeitskleidung.ViewModels {
                 .Include(x => x.Bestände)
                 .ThenInclude(x => x.Lagerplatz)) {
                 Arbeitskleidungen.Add(arbeitskleidung);
-            }
+            }          
         }
     }
 }

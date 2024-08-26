@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:db="clr-namespace:Arbeitsbekleidung.Database.Database;assembly=Arbeitsbekleidung.Database"
     xmlns:local="clr-namespace:BLG_Arbeitskleidung.Views.UserControls"
+    xmlns:main="clr-namespace:BLG_Arbeitskleidung.Models"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewmodels="clr-namespace:BLG_Arbeitskleidung.ViewModels"
     xmlns:models="clr-namespace:Arbeitsbekleidung.Models.Models;assembly=Arbeitsbekleidung.Models"
@@ -12,6 +13,7 @@
     d:DesignHeight="800"
     d:DesignWidth="1250"
     mc:Ignorable="d">
+   
     <Grid>
         <ListView ItemsSource="{Binding Arbeitskleidungen}">
             <ListView.ItemTemplate>
@@ -87,31 +89,16 @@
             VerticalScrollBarVisibility="Auto">
             <DataGrid.RowStyle>
                 <Style TargetType="{x:Type DataGridRow}">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding GesamtBestand, Mode=OneWay}" Value="5">
+                    <Style.Triggers>                        
+                        <DataTrigger Binding="{Binding GesamtBestand, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Value="0">
                             <Setter Property="Background" Value="IndianRed" />
                             <Setter Property="Foreground" Value="White" />
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding GesamtBestand, Mode=OneWay}" Value="4">
-                            <Setter Property="Background" Value="IndianRed" />
+
+                        <DataTrigger Binding="{Binding IsMeldegrenzeÜberschritten, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                            <Setter Property="Background" Value="DarkOrange" />
                             <Setter Property="Foreground" Value="White" />
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding GesamtBestand, Mode=OneWay}" Value="3">
-                            <Setter Property="Background" Value="IndianRed" />
-                            <Setter Property="Foreground" Value="White" />
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding GesamtBestand, Mode=OneWay}" Value="2">
-                            <Setter Property="Background" Value="IndianRed" />
-                            <Setter Property="Foreground" Value="White" />
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding GesamtBestand, Mode=OneWay}" Value="1">
-                            <Setter Property="Background" Value="IndianRed" />
-                            <Setter Property="Foreground" Value="White" />
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding GesamtBestand, Mode=OneWay}" Value="0">
-                            <Setter Property="Background" Value="IndianRed" />
-                            <Setter Property="Foreground" Value="White" />
-                        </DataTrigger>
+                        </DataTrigger>   
                     </Style.Triggers>
                 </Style>
             </DataGrid.RowStyle>

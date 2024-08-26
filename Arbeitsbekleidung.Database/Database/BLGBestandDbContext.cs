@@ -1,7 +1,6 @@
 ﻿using Arbeitsbekleidung.Models.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using System.IO;
 
 namespace Arbeitsbekleidung.Database.Database {
     public class BLGBestandDbContext : DbContext {
@@ -22,7 +21,7 @@ namespace Arbeitsbekleidung.Database.Database {
                 .AddJsonFile("appsettings.json");
 
             Configuration = builder.Build();
-            _connectionString = Configuration.GetConnectionString("DefaultConnection")!;
+            _connectionString = Configuration.GetConnectionString("SecondConnection")!;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {

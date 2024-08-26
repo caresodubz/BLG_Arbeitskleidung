@@ -16,6 +16,8 @@
 
         <Button
             Grid.Row="1"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Center"
             Height="60"
             Width="150"
             Background="White"
@@ -144,11 +146,11 @@
                         VerticalContentAlignment="Center"
                         FontSize="18"
                         Margin="20,20,300,20"
-                        Text="{Binding Mindestmenge, UpdateSourceTrigger=PropertyChanged}">
+                        Text="{Binding Meldegrenze, UpdateSourceTrigger=PropertyChanged}">
                     <TextBox.Style>
                         <Style TargetType="TextBox">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding Av_mindestmenge, UpdateSourceTrigger=PropertyChanged}" Value="true">
+                                <DataTrigger Binding="{Binding Av_meldegrenze, UpdateSourceTrigger=PropertyChanged}" Value="true">
                                     <Setter Property="BorderBrush" Value="Red" />
                                 </DataTrigger>
                             </Style.Triggers>
