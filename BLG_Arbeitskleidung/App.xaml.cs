@@ -14,9 +14,9 @@ namespace BLG_Arbeitskleidung {
                 mainWindowView.DataContext = viewModel;
                 mainWindowView.ShowDialog();
             }
-            catch(Exception) {
+            catch(Exception ex) {
                 MessageBox.Show(
-                    "Fehler beim Verbinden mit der Datenbank!",
+                    $"Fehler beim Verbinden mit der Datenbank! ({ex.Message})",
                     "Fehler",
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);

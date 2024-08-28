@@ -2,16 +2,20 @@
 using System.Collections.ObjectModel;
 using Arbeitsbekleidung.Models.Models;
 using Arbeitsbekleidung.Database.Database;
+using Microsoft.EntityFrameworkCore;
 
 namespace BLG_Arbeitskleidung.ViewModels {
     public partial class LogViewModel : ObservableObject {
 
         public BLGBestandDbContext Database { get; set; }
 
-        public ObservableCollection<Log> Logs {  get; set; }
+        public ObservableCollection<Log> Logs { get; } = new();
 
         public LogViewModel(BLGBestandDbContext database) {
-             Database = database;
+            Database = database;
+            foreach(Log logs in Database.Log) {
+                Logs.Add(logs);
+            }
         }
     }
 }

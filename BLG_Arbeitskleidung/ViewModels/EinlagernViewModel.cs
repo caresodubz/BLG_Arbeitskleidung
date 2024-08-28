@@ -8,11 +8,11 @@ using Arbeitsbekleidung.Database.Database;
 
 namespace BLG_Arbeitskleidung.ViewModels {
     public partial class EinlagernViewModel : ObservableObject {
-        
-        public BLGBestandDbContext Database {  get; set; }
+
+        public BLGBestandDbContext Database { get; set; }
 
         public Arbeitskleidung[] Arbeitskleidungen { get; }
-        
+
         public Lagerplatz[] Lagerplaetze { get; }
 
         [ObservableProperty]
@@ -22,14 +22,19 @@ namespace BLG_Arbeitskleidung.ViewModels {
         protected int _Menge = 0;
 
         public ObservableCollection<string> Groeßen { get; } = new();
-        
+
         [ObservableProperty]
         protected string _AusgwaehlteGroesse = string.Empty;
 
         [ObservableProperty]
         protected bool _IsMengeLeer = false;
 
-      
+        [ObservableProperty]
+        protected string _Bemerkung;
+
+        public DateTime Einlagern_datum { get; set; } = DateTime.Now;
+
+
 
         public string[] Artikelnamen {
             get {
@@ -75,9 +80,9 @@ namespace BLG_Arbeitskleidung.ViewModels {
                 if(Menge <= 0) {
                     IsMengeLeer = true;
                     MessageBox.Show(
-                        "Es muss eine Menge eingegeben werden!", 
-                        "Fehler", 
-                        MessageBoxButton.OK, 
+                        "Es muss eine Menge eingegeben werden!",
+                        "Fehler",
+                        MessageBoxButton.OK,
                         MessageBoxImage.Error);
                     return;
                 }
@@ -87,8 +92,8 @@ namespace BLG_Arbeitskleidung.ViewModels {
 
                 MessageBoxResult messageBoxResult = MessageBox.Show(
                     $"Sind Sie sich sicher, dass Sie \"{selectedArbeitskleidung.artikel_name}\" ({selectedArbeitskleidung.artikel_nr}) einlagern wollen?",
-                    "Abfrage", 
-                    MessageBoxButton.YesNo, 
+                    "Abfrage",
+                    MessageBoxButton.YesNo,
                     MessageBoxImage.Question);
                 if(messageBoxResult != MessageBoxResult.Yes) {
                     return;
@@ -97,28 +102,38 @@ namespace BLG_Arbeitskleidung.ViewModels {
                 Bestand? bestand = Database.Bestand.FirstOrDefault(x => x.artikel_id == selectedArbeitskleidung.artikel_id && x.lagerp_id == AusgewaehlterLagerplatz.lagerp_id);
                 if(bestand != null) {
                     bestand.menge += Menge;
-                } else {
+                }
+                else {
                     bestand = new() {
                         Arbeitskleidung = selectedArbeitskleidung,
                         Lagerplatz = AusgewaehlterLagerplatz,
                         menge = Menge,
                     };
-
                     Database.Bestand.Add(bestand);
                 }
+
+                if(Bemerkung != null) {
+                    Log log = new() {
+                        log_bemerkung = Bemerkung,
+                        datum = DateTime.Now
+                    };
+                    Database.Log.Add(log);
+                }
+
 
                 Database.SaveChanges();
 
                 MessageBox.Show(
-                    "Bestand erfolgreich eingelagert!", 
-                    "Information", 
-                    MessageBoxButton.OK, 
+                    "Bestand erfolgreich eingelagert!",
+                    "Information",
+                    MessageBoxButton.OK,
                     MessageBoxImage.Information);
-            } catch(Exception) {
+            }
+            catch(Exception ex) {
                 MessageBox.Show(
-                    "Fehler mit der Datenbankverbindung!",
-                    "Fehlermeldung", 
-                    MessageBoxButton.OK, 
+                    $"Fehler mit der Datenbankverbindung ({ex.Message})!",
+                    "Fehlermeldung",
+                    MessageBoxButton.OK,
                     MessageBoxImage.Error);
             }
         }

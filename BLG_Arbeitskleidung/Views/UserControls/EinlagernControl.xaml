@@ -82,8 +82,7 @@
                     FontSize="18"
                     Text="Bemerkung: "
                     FontWeight="Medium"                    
-                    />
-                
+                    />                
             </Grid>
 
             <Grid Grid.Column="1">
@@ -155,6 +154,7 @@
                     VerticalScrollBarVisibility="Visible"  
                     MaxWidth="600"
                     TextWrapping="Wrap"
+                    Text="{Binding Bemerkung, UpdateSourceTrigger=PropertyChanged}"
                     />
             </Grid>
         </Grid>

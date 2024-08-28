@@ -4,10 +4,80 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BLG_Arbeitskleidung.Views.UserControls"
+             xmlns:viewmodels="clr-namespace:BLG_Arbeitskleidung.ViewModels"
+             xmlns:models="clr-namespace:Arbeitsbekleidung.Models.Models;assembly=Arbeitsbekleidung.Models"
              mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance Type=viewmodels:LogViewModel}"
              d:DesignHeight="800"
-             d:DesignWidth="1250">
+             d:DesignWidth="1250"
+             d:Background="White">
     <Grid>
-            
+        <ListView ItemsSource="{Binding Logs}">
+            <ListView.ItemTemplate>
+                <DataTemplate DataType="{x:Type models:Log}">
+                    <Grid Margin="0,10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0">
+                                <Run FontWeight="Bold" Text="Artikelname: " />
+                                <Run Text="{Binding log_id, Mode=OneWay}" />
+                            </TextBlock>
+
+                            <TextBlock Grid.Column="1" Margin="5,0">
+                                <Run FontWeight="Bold" Text="Größen: " />
+                                <Run Text="{Binding log_date, Mode=OneWay}" />
+                            </TextBlock>                            
+                            
+                            <TextBlock Grid.Column="2" Margin="5,0">
+                                <Run FontWeight="Bold" Text="Gesamtbestand: " />
+                                <Run Text="{Binding log_bemerkung, Mode=OneWay}" />
+                            </TextBlock>
+                        </Grid>                       
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <DataGrid
+            AutoGenerateColumns="False"
+            Background="White"
+            CanUserAddRows="False"
+            CanUserDeleteRows="False"
+            CanUserResizeRows="False"
+            FontSize="18"
+            IsReadOnly="True"
+            ItemsSource="{Binding Logs}"
+            VerticalScrollBarVisibility="Auto">           
+
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Width="Auto"
+                    MinWidth="120"
+                    Binding="{Binding log_id, Mode=OneWay}"
+                    Header="Log-ID" />
+                
+                <DataGridTextColumn
+                    Width="Auto"
+                    MinWidth="120"
+                    Binding="{Binding log_date, Mode=OneWay}"
+                    Header="Datum" />
+                
+                <DataGridTextColumn
+                    Width="*"
+                    MinWidth="120"
+                    Binding="{Binding log_bemerkung, Mode=OneWay}"
+                    Header="Bemerkung" /> 
+            </DataGrid.Columns>            
+        </DataGrid>
     </Grid>
 </UserControl>
