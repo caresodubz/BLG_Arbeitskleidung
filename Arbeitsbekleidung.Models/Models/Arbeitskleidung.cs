@@ -23,7 +23,6 @@ namespace Arbeitsbekleidung.Models.Models {
             }
         }
 
-
         public string DisplayArtikelName {
             get {
                 return $"{artikel_name} ({artikel_nr})";

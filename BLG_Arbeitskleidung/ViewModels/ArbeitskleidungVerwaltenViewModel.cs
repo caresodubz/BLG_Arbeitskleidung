@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using System.Windows;
 using Arbeitsbekleidung.Models.Models;
 using Arbeitsbekleidung.Database.Database;
+using BLG_Arbeitskleidung.Views.UserControls;
 
 namespace BLG_Arbeitskleidung.ViewModels {
     public partial class ArbeitskleidungVerwaltenViewModel : ObservableObject {
@@ -67,10 +68,6 @@ namespace BLG_Arbeitskleidung.ViewModels {
                 Av_meldegrenze = false;
             }
 
-            
-
-
-
             if(string.IsNullOrWhiteSpace(Artikel_Nr) || string.IsNullOrWhiteSpace(Artikel_Name) || string.IsNullOrWhiteSpace(Groesse)) {
                 MessageBox.Show(
                     "Einige Pflichtfelder wurden nicht korrekt ausgefüllt!",
@@ -78,7 +75,7 @@ namespace BLG_Arbeitskleidung.ViewModels {
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);
                 return;
-            }
+            }           
 
             MessageBoxResult messageBoxResult = MessageBox.Show(
                 $"Sind sie sicher, dass Sie diesen Artikel ({Artikel_Name}, {Artikel_Nr}) anlegen möchten?",
@@ -117,9 +114,9 @@ namespace BLG_Arbeitskleidung.ViewModels {
                     MessageBoxButton.OK,
                     MessageBoxImage.Information);
             }
-            catch(Exception) {
+            catch(Exception ex) {
                 MessageBox.Show(
-                    "Fehler beim Anlegen in der Datenbank!",
+                    $"Fehler beim Anlegen in der Datenbank! ({ex.Message})",
                     "Fehlermeldung",
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);

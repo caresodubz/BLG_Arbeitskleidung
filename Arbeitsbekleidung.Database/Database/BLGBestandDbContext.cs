@@ -21,7 +21,7 @@ namespace Arbeitsbekleidung.Database.Database {
                 .AddJsonFile("appsettings.json");
 
             Configuration = builder.Build();
-            _connectionString = Configuration.GetConnectionString("DefaultConnection")!;
+            _connectionString = Configuration.GetConnectionString("SecondConnection")!;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
