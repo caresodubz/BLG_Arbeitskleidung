@@ -114,8 +114,9 @@ namespace BLG_Arbeitskleidung.ViewModels {
 
                 if(Bemerkung != null) {
                     Log log = new() {
-                        log_bemerkung = $"Einlagerung: \"{AusgewaehlteArtikelnamen}\": " + Bemerkung,
-                        datum = DateTime.Now
+                        log_bemerkung = $"Einlagerung: " + Bemerkung,
+                        datum = DateTime.Now,
+                        artikel = AusgewaehlteArtikelnamen
                     };
                     Database.Log.Add(log);
                 }

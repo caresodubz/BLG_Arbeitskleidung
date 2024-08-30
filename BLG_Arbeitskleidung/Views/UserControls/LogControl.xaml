@@ -75,8 +75,14 @@
                 <DataGridTextColumn
                     Width="*"
                     MinWidth="120"
+                    Binding="{Binding artikel, Mode=OneWay}"
+                    Header="Artikel" />
+                
+                <DataGridTextColumn
+                    Width="*"
+                    MinWidth="120"
                     Binding="{Binding log_bemerkung, Mode=OneWay}"
-                    Header="Bemerkung" /> 
+                    Header="Bemerkung" />
             </DataGrid.Columns>            
         </DataGrid>
     </Grid>

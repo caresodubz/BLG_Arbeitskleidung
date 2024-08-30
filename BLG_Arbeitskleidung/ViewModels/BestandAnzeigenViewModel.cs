@@ -3,9 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.ObjectModel;
 using Arbeitsbekleidung.Models.Models;
 using Arbeitsbekleidung.Database.Database;
-using BLG_Arbeitskleidung.Models;
-using System.Windows.Forms;
-using CommunityToolkit.Mvvm.Input;
 
 namespace BLG_Arbeitskleidung.ViewModels {
     public partial class BestandAnzeigenViewModel : ObservableObject {
