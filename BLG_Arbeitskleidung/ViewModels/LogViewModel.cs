@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using Arbeitsbekleidung.Models.Models;
 using Arbeitsbekleidung.Database.Database;
-using Microsoft.EntityFrameworkCore;
 
 namespace BLG_Arbeitskleidung.ViewModels {
     public partial class LogViewModel : ObservableObject {

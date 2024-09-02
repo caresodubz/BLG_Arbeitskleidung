@@ -54,7 +54,7 @@
             CanUserAddRows="False"
             CanUserDeleteRows="False"
             CanUserResizeRows="False"
-            FontSize="18"
+            FontSize="14"
             IsReadOnly="True"
             ItemsSource="{Binding Logs}"
             VerticalScrollBarVisibility="Auto">           
