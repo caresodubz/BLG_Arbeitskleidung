@@ -8,8 +8,7 @@
     xmlns:viewmodels="clr-namespace:BLG_Arbeitskleidung.ViewModels"
     d:DataContext="{d:DesignInstance Type=viewmodels:EinlagernViewModel}"
     d:DesignHeight="800"
-    d:DesignWidth="1250"
-    d:Background="White"
+    d:DesignWidth="1250"    
     mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
@@ -66,7 +65,7 @@
                     Grid.Row="2"
                     VerticalAlignment="Center"
                     FontSize="18"
-                    Text="Menge: "
+                    Text="Menge: *"
                     FontWeight="Medium"/>
 
                 <TextBlock

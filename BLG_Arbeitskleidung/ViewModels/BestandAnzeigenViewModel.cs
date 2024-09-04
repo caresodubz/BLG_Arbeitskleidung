@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.ObjectModel;
 using Arbeitsbekleidung.Models.Models;
 using Arbeitsbekleidung.Database.Database;
+using CommunityToolkit.Mvvm.Input;
+using BLG_Arbeitskleidung.Models;
 
 namespace BLG_Arbeitskleidung.ViewModels {
     public partial class BestandAnzeigenViewModel : ObservableObject {
@@ -21,6 +23,12 @@ namespace BLG_Arbeitskleidung.ViewModels {
                 .ThenInclude(x => x.Lagerplatz)) {
                 Arbeitskleidungen.Add(arbeitskleidung);
             }          
-        }       
+        }
+
+        [RelayCommand]
+        protected void ExcelErstellen() {
+            ExcelListeErzeugen excel = new();
+            excel.ErstelleExcelListe();
+        }
     }
 }

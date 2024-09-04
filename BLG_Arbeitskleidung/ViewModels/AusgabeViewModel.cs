@@ -1,5 +1,4 @@
-﻿//using BLG_Arbeitskleidung.Database;
-using BLG_Arbeitskleidung.Models;
+﻿using BLG_Arbeitskleidung.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.EntityFrameworkCore;

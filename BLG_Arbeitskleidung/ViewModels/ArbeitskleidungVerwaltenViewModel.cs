@@ -3,7 +3,6 @@ using CommunityToolkit.Mvvm.Input;
 using System.Windows;
 using Arbeitsbekleidung.Models.Models;
 using Arbeitsbekleidung.Database.Database;
-using BLG_Arbeitskleidung.Views.UserControls;
 
 namespace BLG_Arbeitskleidung.ViewModels {
     public partial class ArbeitskleidungVerwaltenViewModel : ObservableObject {
