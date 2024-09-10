@@ -2,7 +2,7 @@
 
 namespace Arbeitsbekleidung.Models.Models {
     [PrimaryKey(nameof(bestand_id))]
-    public class Bestand {
+    public class Bestand {        
         public int bestand_id {  get; set; } = 0;
         public int artikel_id { get; set; } = 0;
         public int? lagerp_id { get; set; } = null;

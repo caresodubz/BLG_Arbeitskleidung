@@ -30,9 +30,11 @@ namespace BLG_Arbeitskleidung.ViewModels {
         protected bool _IsMengeLeer = false;
 
         [ObservableProperty]
-        protected string _Bemerkung;
+        protected string _Bemerkung;  
 
         public DateTime Einlagern_datum { get; set; } = DateTime.Now;
+
+        public string Bearbeiter { get; set; } = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
 
 
 
@@ -112,16 +114,19 @@ namespace BLG_Arbeitskleidung.ViewModels {
                     Database.Bestand.Add(bestand);
                 }
 
-                if(Bemerkung != null) {
-                    Log log = new() {
-                        log_bemerkung = $"Einlagerung: " + Bemerkung,
-                        datum = DateTime.Now,
-                        artikel = AusgewaehlteArtikelnamen
-                    };
-                    Database.Log.Add(log);
-                }
 
+                Log log = new() {
+                    log_bemerkung = Bemerkung,
+                    datum = DateTime.Now,
+                    artikel = AusgewaehlteArtikelnamen,
+                    log_groesse = AusgwaehlteGroesse,
+                    log_lpz = AusgewaehlterLagerplatz.lpz_bezeichnung,
+                    log_funktion = "Einlagerung",
+                    log_stueckzahl = Menge,
+                    bearbeiter = Bearbeiter
+                };
 
+                Database.Log.Add(log);
                 Database.SaveChanges();
 
                 MessageBox.Show(

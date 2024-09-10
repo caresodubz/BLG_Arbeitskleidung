@@ -14,7 +14,6 @@ namespace Arbeitsbekleidung.Models.Models {
         }
         
         [ForeignKey(nameof(Bestand.lagerp_id))]
-        public List<Bestand> Bestaende { get; set; } = new();
-        
+        public List<Bestand> Bestaende { get; set; } = new();        
     }
 }

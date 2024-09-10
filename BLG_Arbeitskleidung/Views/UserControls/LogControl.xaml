@@ -12,7 +12,26 @@
              d:DesignWidth="1250"
              d:Background="White">
     <Grid>
-        <ListView ItemsSource="{Binding Logs}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="80"/>
+        </Grid.RowDefinitions>
+
+        <Button
+            Grid.Row="1"
+            Width="160"
+            Height="70" 
+            FontSize="18"
+            FontWeight="Medium"
+            Background="White"
+            >
+            <StackPanel>
+                <TextBlock Text="Log-Datei" TextAlignment="Center" />
+                <TextBlock Text="erzeugen" TextAlignment="Center" />
+            </StackPanel>
+        </Button>
+
+        <ListView ItemsSource="{Binding Logs}" Grid.Row="0">
             <ListView.ItemTemplate>
                 <DataTemplate DataType="{x:Type models:Log}">
                     <Grid Margin="0,10">
@@ -30,24 +49,25 @@
                             </Grid.ColumnDefinitions>
 
                             <TextBlock Grid.Column="0">
-                                <Run FontWeight="Bold" Text="Artikelname: " />
-                                <Run Text="{Binding log_id, Mode=OneWay}" />
+                        <Run FontWeight="Bold" Text="Artikelname: " />
+                        <Run Text="{Binding log_id, Mode=OneWay}" />
                             </TextBlock>
 
                             <TextBlock Grid.Column="1" Margin="5,0">
-                                <Run FontWeight="Bold" Text="Größen: " />
-                                <Run Text="{Binding log_date, Mode=OneWay}" />
-                            </TextBlock>                            
-                            
-                            <TextBlock Grid.Column="2" Margin="5,0">
-                                <Run FontWeight="Bold" Text="Gesamtbestand: " />
-                                <Run Text="{Binding log_bemerkung, Mode=OneWay}" />
+                        <Run FontWeight="Bold" Text="Größen: " />
+                        <Run Text="{Binding log_date, Mode=OneWay}" />
                             </TextBlock>
-                        </Grid>                       
+
+                            <TextBlock Grid.Column="2" Margin="5,0">
+                        <Run FontWeight="Bold" Text="Gesamtbestand: " />
+                        <Run Text="{Binding log_bemerkung, Mode=OneWay}" />
+                            </TextBlock>
+                        </Grid>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
         <DataGrid
             AutoGenerateColumns="False"
             Background="White"
@@ -57,32 +77,62 @@
             FontSize="14"
             IsReadOnly="True"
             ItemsSource="{Binding Logs}"
-            VerticalScrollBarVisibility="Auto">           
+            VerticalScrollBarVisibility="Auto"
+            HorizontalScrollBarVisibility="Auto"              
+            >           
 
             <DataGrid.Columns>
                 <DataGridTextColumn
-                    Width="Auto"
-                    MinWidth="120"
-                    Binding="{Binding log_id, Mode=OneWay}"
-                    Header="Log-ID" />
-                
+                    Width="80"
+                    MinWidth="80"
+                    Binding="{Binding log_funktion, Mode=OneWay}"
+                    Header="Funktion" />
+
                 <DataGridTextColumn
                     Width="Auto"
-                    MinWidth="120"
+                    MinWidth="80"
+                    Binding="{Binding bearbeiter, Mode=OneWay}"
+                    Header="Bearbeiter" />
+
+                <DataGridTextColumn
+                    Width="Auto"     
+                    MinWidth="90"
                     Binding="{Binding log_date, Mode=OneWay}"
                     Header="Datum" />
                 
                 <DataGridTextColumn
-                    Width="*"
+                    Width="Auto"
                     MinWidth="120"
                     Binding="{Binding artikel, Mode=OneWay}"
                     Header="Artikel" />
+
+                <DataGridTextColumn
+                    Width="Auto"                    
+                    Binding="{Binding log_stueckzahl, Mode=OneWay}"
+                    Header="Stückzahl" />
+
+                <DataGridTextColumn
+                    Width="Auto"                    
+                    Binding="{Binding log_groesse, Mode=OneWay}"
+                    Header="Größe" />
+
+                <DataGridTextColumn
+                    Width="Auto"
+                    MinWidth="80"
+                    Binding="{Binding person_nr, Mode=OneWay}"
+                    Header="Personalnummer" />
                 
                 <DataGridTextColumn
-                    Width="*"
+                    Width="80"
+                    MinWidth="80"
+                    Binding="{Binding log_lpz, Mode=OneWay}"
+                    Header="Lagerplatz" />
+
+                <DataGridTextColumn
+                    Width="Auto"
                     MinWidth="120"
                     Binding="{Binding log_bemerkung, Mode=OneWay}"
-                    Header="Bemerkung" />
+                    Header="Bemerkung" />                
             </DataGrid.Columns>            
         </DataGrid>
     </Grid>

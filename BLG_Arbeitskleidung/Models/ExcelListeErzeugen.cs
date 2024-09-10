@@ -14,7 +14,6 @@ namespace BLG_Arbeitskleidung.Models {
         private List<Arbeitskleidung> BanfListe { get; set; } = [];
 
         public ExcelListeErzeugen() {
-
             BanfListe = Database.Arbeitskleidung.Include(x => x.Bestände).ToList().Where(x => x.IsMeldegrenzeÜberschritten == true || x.GesamtBestand == 0).ToList();
         }
 
@@ -80,7 +79,6 @@ namespace BLG_Arbeitskleidung.Models {
                                 new Cell() { CellValue = new CellValue(item.artikel_nr), DataType = CellValues.String },
                                 new Cell() { CellValue = new CellValue(item.groesse), DataType = CellValues.String },                                
                                 new Cell() { CellValue = new CellValue(item.GesamtBestand.ToString()), DataType = CellValues.Number }
-
                             );
                             sheetData.Append(row);
                         }

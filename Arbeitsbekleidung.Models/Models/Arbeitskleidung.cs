@@ -6,8 +6,7 @@ namespace Arbeitsbekleidung.Models.Models {
     public class Arbeitskleidung {
         public int artikel_id { get; set; } = 0;
         public string artikel_nr { get; set; } = string.Empty;
-        public string artikel_name { get; set; } = string.Empty;
-        public string kleidungsart { get; set; } = string.Empty;
+        public string artikel_name { get; set; } = string.Empty;       
         public string groesse { get; set; } = string.Empty;
         public int meldegrenze { get; set; } = 0;
 

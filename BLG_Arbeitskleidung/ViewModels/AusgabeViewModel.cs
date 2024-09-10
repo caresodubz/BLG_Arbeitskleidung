@@ -16,13 +16,13 @@ namespace BLG_Arbeitskleidung.ViewModels {
         public BLGBestandDbContext Database { get; set; } = new();
 
         [ObservableProperty]
-        protected ObservableCollection<Bestand> _Bestände = [];
+        protected ObservableCollection<Bestand> _Bestände = [];        
 
         [ObservableProperty]
-        protected ObservableCollection<Bestand> _SelectedBestände = [];
+        protected ObservableCollection<Bestand> _SelectedBestände = [];       
 
         [ObservableProperty]
-        protected int _AddMenge = 0;
+        protected int _AddMenge = 1;
 
         [ObservableProperty]
         protected string _Vorname = string.Empty;
@@ -41,8 +41,9 @@ namespace BLG_Arbeitskleidung.ViewModels {
         protected bool _NachnameTextBox = false;
 
         [ObservableProperty]
-        protected bool _PersNummerTextBox = false;  
-        
+        protected bool _PersNummerTextBox = false;
+        public string Bearbeiter { get; set; } = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
+
         public AusgabeViewModel(BLGBestandDbContext database) {
             Database = database;
             foreach(Bestand bestand in Database.Bestand
@@ -72,7 +73,8 @@ namespace BLG_Arbeitskleidung.ViewModels {
             Bestand? tempBestand = SelectedBestände.FirstOrDefault(x => x.bestand_id == bestand.bestand_id);
             if(tempBestand != null) {
                 tempBestand.menge += differenz;
-            } else {
+            }
+            else {
                 tempBestand = new() {
                     Arbeitskleidung = bestand.Arbeitskleidung,
                     Lagerplatz = bestand.Lagerplatz,
@@ -129,9 +131,9 @@ namespace BLG_Arbeitskleidung.ViewModels {
 
             if(SelectedBestände.Count == 0) {
                 MessageBox.Show(
-                    "Es wurden keine Artikel ausgewählt!", 
+                    "Es wurden keine Artikel ausgewählt!",
                     "Fehlermeldung",
-                    MessageBoxButton.OK, 
+                    MessageBoxButton.OK,
                     MessageBoxImage.Error);
                 return;
             }
@@ -141,35 +143,65 @@ namespace BLG_Arbeitskleidung.ViewModels {
 
             if(string.IsNullOrWhiteSpace(Vorname) || string.IsNullOrWhiteSpace(Nachname) || string.IsNullOrWhiteSpace(PersNummer)) {
                 MessageBox.Show(
-                    "Es wurden nicht alle Daten angegeben!", 
-                    "Fehlermeldung", 
-                    MessageBoxButton.OK, 
+                    "Es wurden nicht alle Daten angegeben!",
+                    "Fehlermeldung",
+                    MessageBoxButton.OK,
                     MessageBoxImage.Error);
                 return;
-            }        
+            }
 
             MessageBoxResult promptResult = MessageBox.Show(
-                "Sind Sie sich sicher, ob die Angaben korrekt sind?", 
-                "Abfrage", 
-                MessageBoxButton.YesNo, 
+                "Sind Sie sich sicher, ob die Angaben korrekt sind?",
+                "Abfrage",
+                MessageBoxButton.YesNo,
                 MessageBoxImage.Question);
 
             if(promptResult != MessageBoxResult.Yes) {
                 return;
             }
 
-            string filePath = BLGWordAusgabeFactory.CreateOutputFile($"{Vorname} {Nachname}", PersNummer, SelectedBestände.ToArray());
+            if(!Database.Mitarbeiter.Select(x => x.person_nr)!.Contains(PersNummer)) {
+                Mitarbeiter mitarbeiter = new() {
+                    person_nr = PersNummer.ToUpper(),
+                    vorname = Vorname,
+                    nachname = Nachname,
+                };
+
+                Database.Add(mitarbeiter);
+                Database.SaveChanges();
+            }
+            
+
+            foreach(var item in SelectedBestände) {
+                Log log = new() {
+                    datum = DateTime.Now,
+                    artikel = item.Arbeitskleidung!.DisplayArtikelName,
+                    log_groesse = item.Arbeitskleidung.groesse,
+                    log_lpz = item.Lagerplatz!.lpz_bezeichnung,
+                    log_funktion = "Ausgabe",
+                    log_stueckzahl = item.menge,
+                    bearbeiter = Bearbeiter,
+                    person_nr = PersNummer.ToUpper()                    
+                };
+
+                Database.Log.Add(log);
+                Database.SaveChanges();
+            }
+
+
+            string filePath = BLGWordAusgabeFactory.CreateOutputFile($"{Vorname} {Nachname}", PersNummer.ToUpper(), SelectedBestände.ToArray());
             try {
                 ProcessStartInfo startInfo = new(filePath) {
                     UseShellExecute = true,
                 };
 
                 Process.Start(startInfo);
-            } catch(Exception) {
+            }
+            catch(Exception) {
                 MessageBoxResult messageBoxResult = MessageBox.Show(
                     "Datei konnte nicht geöffnet werden, wollen Sie sie speichern?",
-                    "Fehlermeldung", 
-                    MessageBoxButton.YesNo, 
+                    "Fehlermeldung",
+                    MessageBoxButton.YesNo,
                     MessageBoxImage.Error);
 
                 if(messageBoxResult == MessageBoxResult.Yes) {
@@ -182,11 +214,12 @@ namespace BLG_Arbeitskleidung.ViewModels {
                     if(saveFileDialog.ShowDialog() ?? false) {
                         try {
                             File.Copy(filePath, saveFileDialog.FileName, overwrite: true);
-                        } catch(Exception) {
+                        }
+                        catch(Exception) {
                             MessageBox.Show(
-                                "Datei konnte nicht gespeichert werden!", 
-                                "Fehlermeldung", 
-                                MessageBoxButton.OK, 
+                                "Datei konnte nicht gespeichert werden!",
+                                "Fehlermeldung",
+                                MessageBoxButton.OK,
                                 MessageBoxImage.Error);
                             return;
                         }
@@ -208,11 +241,12 @@ namespace BLG_Arbeitskleidung.ViewModels {
                 Database.SaveChanges();
                 SelectedBestände.Clear();
                 Bestände = [.. dbBestände.Where(x => x.menge > 0)];
-            } catch(Exception) {
+            }
+            catch(Exception ex) {
                 MessageBox.Show(
-                    "Bestandsänderung kann nicht gespeichert werden!", 
-                    "Fehlermeldung", 
-                    MessageBoxButton.OK, 
+                    $"Bestandsänderung kann nicht gespeichert werden! {ex.Message}",
+                    "Fehlermeldung",
+                    MessageBoxButton.OK,
                     MessageBoxImage.Error);
                 return;
             }
