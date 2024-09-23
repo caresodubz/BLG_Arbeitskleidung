@@ -19,12 +19,11 @@
 
         <Button
             Grid.Row="1"
-            Width="160"
-            Height="70" 
+            Width="150"
+Height="60"
             FontSize="18"
             FontWeight="Medium"
-            Background="White"
-            >
+            Background="White">
             <StackPanel>
                 <TextBlock Text="Log-Datei" TextAlignment="Center" />
                 <TextBlock Text="erzeugen" TextAlignment="Center" />

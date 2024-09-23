@@ -49,7 +49,6 @@ namespace BLG_Arbeitskleidung.ViewModels {
             get {
                 return _AusgewaehlteArtikelnamen;
             }
-
             set {
                 _AusgewaehlteArtikelnamen = value;
                 Groeßen.Clear();

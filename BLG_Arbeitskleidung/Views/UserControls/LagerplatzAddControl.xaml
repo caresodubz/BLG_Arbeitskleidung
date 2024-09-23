@@ -21,7 +21,8 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="260" />
             <RowDefinition Height="80" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="80" />
         </Grid.RowDefinitions>
 
         <TextBlock
@@ -33,13 +34,13 @@
             Text="Wählen Sie einen Namen für den Lagerplatz aus!" />
 
         <Button
-            Grid.Row="6"
+            Grid.Row="7"
             Width="150"
             Height="60"
             VerticalAlignment="Center"
             Background="White"
             Command="{Binding LagerplatzAnlegenCommand}"
-            Content="SPEICHERN"
+            Content="Speichern"
             FontSize="18"
             FontWeight="Medium" />
 

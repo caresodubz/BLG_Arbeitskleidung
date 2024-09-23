@@ -23,14 +23,17 @@
 
         <Button
             Grid.Row="1"
-            Width="160"
-            Height="70"
-            Command="{Binding ExcelErstellenCommand}"
-            Content="Excelliste erzeugen"
+            Width="150"
+            Height="60"
+            Command="{Binding ExcelErstellenCommand}"            
             FontSize="18"
             FontWeight="Medium"
-            Background="White"
-            />
+            Background="White">
+            <StackPanel>
+                <TextBlock Text="Excelliste"/>
+                <TextBlock Text="erzeugen"/>
+            </StackPanel>            
+        </Button>
 
         <ListView ItemsSource="{Binding Arbeitskleidungen}" Grid.Row="0">
             <ListView.ItemTemplate>
