@@ -36,8 +36,6 @@ namespace BLG_Arbeitskleidung.ViewModels {
 
         public string Bearbeiter { get; set; } = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
 
-
-
         public string[] Artikelnamen {
             get {
                 return Arbeitskleidungen.Select(x => x.artikel_name).Distinct().ToArray();

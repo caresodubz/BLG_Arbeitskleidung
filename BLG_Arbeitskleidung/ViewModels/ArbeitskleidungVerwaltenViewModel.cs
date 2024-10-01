@@ -32,7 +32,6 @@ namespace BLG_Arbeitskleidung.ViewModels {
         [ObservableProperty]
         private bool _av_meldegrenze = false;
 
-
         public ArbeitskleidungVerwaltenViewModel(BLGBestandDbContext database) {
             Database = database;
         }
