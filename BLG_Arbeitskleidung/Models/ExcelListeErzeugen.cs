@@ -5,6 +5,7 @@ using System.IO;
 using DocumentFormat.OpenXml.Spreadsheet;
 using DocumentFormat.OpenXml.Packaging;
 using Microsoft.EntityFrameworkCore;
+using System.Windows.Input;
 
 
 namespace BLG_Arbeitskleidung.Models {
@@ -67,7 +68,6 @@ namespace BLG_Arbeitskleidung.Models {
                                 new Cell() { CellValue = new CellValue("Artikelnummer"), DataType = CellValues.String },
                                 new Cell() { CellValue = new CellValue("Größe"), DataType = CellValues.String },                                
                                 new Cell() { CellValue = new CellValue("Gesamtbestand"), DataType = CellValues.String }
-
                         );
                         sheetData.Append(headerRow);
 
@@ -89,7 +89,8 @@ namespace BLG_Arbeitskleidung.Models {
                             "Liste erfolgreich erstellt!",
                             "Information",
                             MessageBoxButtons.OK,
-                            MessageBoxIcon.Information);
+                            MessageBoxIcon.Information
+                            );
                     }
                 }
             }

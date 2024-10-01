@@ -51,7 +51,7 @@ namespace BLG_Arbeitskleidung.ViewModels {
                     DataContext = new LagerplatzAddViewModel(Database)
                 };
                 break;
-            case ViewType.ArbeitskleidungVerwalten:
+            case ViewType.ArbeitskleidungHinzufügen:
                 ContentView = new ArbeitskleidungVerwaltenControl() {
                     DataContext = new ArbeitskleidungVerwaltenViewModel(Database)
                 };
@@ -59,6 +59,11 @@ namespace BLG_Arbeitskleidung.ViewModels {
             case ViewType.Log:
                 ContentView = new LogControl() {
                     DataContext = new LogViewModel(Database)
+                };
+                break;
+            case ViewType.ArbeitskleidungVerwalten:
+                ContentView = new ArtikelBearbeitenControl() {
+                    DataContext = new ArtikelBearbeitenViewModel(Database)
                 };
                 break;
             default:

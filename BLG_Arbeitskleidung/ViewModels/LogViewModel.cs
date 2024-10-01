@@ -8,13 +8,13 @@ namespace BLG_Arbeitskleidung.ViewModels {
 
         public BLGBestandDbContext Database { get; set; }
 
-        public ObservableCollection<Log> Logs { get; } = new();
+        public ObservableCollection<Log> Logs { get; } = [];
 
         public LogViewModel(BLGBestandDbContext database) {
             Database = database;
             foreach(Log logs in Database.Log) {
                 Logs.Add(logs);
             }
-        }
+        }        
     }
 }

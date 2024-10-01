@@ -1,0 +1,103 @@
+﻿<UserControl x:Class="BLG_Arbeitskleidung.Views.UserControls.ArtikelBearbeitenControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BLG_Arbeitskleidung.Views.UserControls" 
+             xmlns:models="clr-namespace:Arbeitsbekleidung.Models.Models;assembly=Arbeitsbekleidung.Models"             
+             xmlns:viewmodels="clr-namespace:BLG_Arbeitskleidung.ViewModels" 
+             d:DataContext="{d:DesignInstance Type=viewmodels:ArtikelBearbeitenViewModel}"
+             mc:Ignorable="d" 
+             d:Background="White"
+             d:DesignHeight="800" d:DesignWidth="1250">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="80"/>
+        </Grid.RowDefinitions>
+
+        <Button
+            Grid.Row="1"            
+            Width="150"
+            Height="60"
+            FontSize="18"
+            FontWeight="Medium"
+            Background="White">
+            <StackPanel>
+                <TextBlock Text="Log-Datei" TextAlignment="Center" />
+                <TextBlock Text="erzeugen" TextAlignment="Center" />
+            </StackPanel>
+        </Button>
+
+        <ListView ItemsSource="{Binding Kleidung}" Grid.Row="0">
+            <ListView.ItemTemplate>
+                <DataTemplate DataType="{x:Type models:Arbeitskleidung}">
+                    <Grid Margin="0,10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0">
+                                <Run FontWeight="Bold" Text="Artikelname: " />
+                                <Run Text="{Binding artikel_name, Mode=OneWay}" />
+                            </TextBlock>
+
+                            <TextBlock Grid.Column="1" Margin="5,0">
+                                <Run FontWeight="Bold" Text="Größen: " />
+                                <Run Text="{Binding groesse, Mode=OneWay}" />
+                            </TextBlock>                           
+                        </Grid>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <DataGrid
+            AutoGenerateColumns="False"
+            Background="White"
+            CanUserAddRows="False"
+            CanUserDeleteRows="False"
+            CanUserResizeRows="False"
+            FontSize="14"
+            IsReadOnly="False"
+            ItemsSource="{Binding Kleidung}"
+            VerticalScrollBarVisibility="Auto"
+            HorizontalScrollBarVisibility="Auto"              
+        >
+
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Width="Auto"
+                    MinWidth="120"
+                    Binding="{Binding artikel_name, Mode=OneWay}"
+                    Header="Artikel" />
+
+                <DataGridTextColumn
+                    Width="Auto"
+                    MinWidth="120"
+                    Binding="{Binding artikel_nr, Mode=OneWay}"
+                    Header="Artikelnummer" />
+
+                <DataGridTextColumn
+                    Width="Auto"                    
+                    Binding="{Binding log_groesse, Mode=OneWay}"
+                    Header="Größe" />
+                
+                <DataGridTextColumn
+                    Width="Auto"                    
+                    Binding="{Binding meldegrenze, Mode=OneWay}"
+                    Header="Meldegrenze" />
+
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

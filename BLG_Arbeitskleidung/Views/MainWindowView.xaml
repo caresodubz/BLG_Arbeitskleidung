@@ -151,7 +151,7 @@
                 VerticalAlignment="Center"
                 BorderThickness="0"
                 Command="{Binding SwitchTabCommand}"
-                CommandParameter="{x:Static vt:ViewType.ArbeitskleidungVerwalten}"
+                CommandParameter="{x:Static vt:ViewType.ArbeitskleidungHinzufügen}"
                 FontSize="20"
                 FontWeight="Medium">
                 <StackPanel>
@@ -162,7 +162,7 @@
                     <Style TargetType="{x:Type Button}">
                         <Setter Property="Background" Value="#A3D2FF" />
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding CurrentViewType}" Value="{x:Static vt:ViewType.ArbeitskleidungVerwalten}">
+                            <DataTrigger Binding="{Binding CurrentViewType}" Value="{x:Static vt:ViewType.ArbeitskleidungHinzufügen}">
                                 <Setter Property="Background" Value="#E9F0FF" />
                             </DataTrigger>
                         </Style.Triggers>
@@ -171,7 +171,7 @@
             </Button>
 
             <Button
-                Grid.Row="5"
+                Grid.Row="6"
                 Grid.Column="0"
                 Width="150"
                 Height="80"
@@ -199,7 +199,7 @@
             </Button>
 
             <Button
-                Grid.Row="6"
+                Grid.Row="5"
                 Grid.Column="0"
                 Width="150"
                 Height="80"
@@ -207,7 +207,7 @@
                 VerticalAlignment="Center"
                 BorderThickness="0"
                 Command="{Binding SwitchTabCommand}"
-                CommandParameter="{x:Static vt:ViewType.Log}"
+                CommandParameter="{x:Static vt:ViewType.ArbeitskleidungVerwalten}"
                 FontSize="20"
                 FontWeight="Medium">
                 <StackPanel>
@@ -218,7 +218,7 @@
                     <Style TargetType="{x:Type Button}">
                         <Setter Property="Background" Value="#A3D2FF" />
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding CurrentViewType}" Value="{x:Static vt:ViewType.Log}">
+                            <DataTrigger Binding="{Binding CurrentViewType}" Value="{x:Static vt:ViewType.ArbeitskleidungVerwalten}">
                                 <Setter Property="Background" Value="#E9F0FF" />
                             </DataTrigger>
                         </Style.Triggers>
