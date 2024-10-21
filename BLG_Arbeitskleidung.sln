@@ -5,9 +5,9 @@ VisualStudioVersion = 17.8.34316.72
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BLG_Arbeitskleidung", "BLG_Arbeitskleidung\BLG_Arbeitskleidung.csproj", "{B042EA91-838D-4896-B81F-3FF13ED08F95}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arbeitsbekleidung.Models", "Arbeitsbekleidung.Models\Arbeitsbekleidung.Models.csproj", "{34DEE77A-900F-4826-9799-C471E5D05AF7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Arbeitsbekleidung.Models", "Arbeitsbekleidung.Models\Arbeitsbekleidung.Models.csproj", "{34DEE77A-900F-4826-9799-C471E5D05AF7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arbeitsbekleidung.Database", "Arbeitsbekleidung.Database\Arbeitsbekleidung.Database.csproj", "{ADEF3121-23F1-403C-9EFF-B4C29509C91A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Arbeitsbekleidung.Database", "Arbeitsbekleidung.Database\Arbeitsbekleidung.Database.csproj", "{ADEF3121-23F1-403C-9EFF-B4C29509C91A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

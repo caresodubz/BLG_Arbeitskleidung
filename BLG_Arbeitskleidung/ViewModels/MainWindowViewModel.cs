@@ -21,7 +21,7 @@ namespace BLG_Arbeitskleidung.ViewModels {
         public MainWindowViewModel() {
             Database = new BLGBestandDbContext();
             SwitchTab(ViewType.AusgabeView);
-            
+
             Lagerplatz[] lagerplätze = Database.Lagerplatz
                 .Include(x => x.Bestaende)
                     .ThenInclude(x => x.Arbeitskleidung)
@@ -55,7 +55,7 @@ namespace BLG_Arbeitskleidung.ViewModels {
                 ContentView = new ArbeitskleidungVerwaltenControl() {
                     DataContext = new ArbeitskleidungVerwaltenViewModel(Database)
                 };
-                break;                
+                break;
             case ViewType.Log:
                 ContentView = new LogControl() {
                     DataContext = new LogViewModel(Database)
@@ -69,7 +69,6 @@ namespace BLG_Arbeitskleidung.ViewModels {
             default:
                 break;
             }
-
             CurrentViewType = viewtype;
         }
     }

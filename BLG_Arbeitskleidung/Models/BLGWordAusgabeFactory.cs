@@ -48,8 +48,8 @@ namespace BLG_Arbeitskleidung.Models {
 
             Run? run = paragraph.Elements<Run>().FirstOrDefault();
             run ??= paragraph.AppendChild(new Run());
-
             Text? text = run.Elements<Text>().FirstOrDefault();
+
             if(text == null) {
                 run.AppendChild(new Text(textContent));
             } else {

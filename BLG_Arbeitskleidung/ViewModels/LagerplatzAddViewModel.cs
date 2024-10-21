@@ -53,7 +53,6 @@ namespace BLG_Arbeitskleidung.ViewModels {
             try {
                 Database.Remove(lagerplatz);
                 Database.SaveChanges();
-
                 Lagerplaetze.Remove(lagerplatz);
             }
             catch(Exception) {
@@ -74,8 +73,7 @@ namespace BLG_Arbeitskleidung.ViewModels {
                         "Der angegebene Lagerplatzname darf nicht leer sein!",
                         "Fehlermeldung",
                         MessageBoxButton.OK,
-                        MessageBoxImage.Error);
-                    //IsLagerplatzLeer = true;
+                        MessageBoxImage.Error);                    
                     return;
                 }
 
@@ -96,7 +94,6 @@ namespace BLG_Arbeitskleidung.ViewModels {
 
                 Database.Lagerplatz.Add(lagerplatz);
                 Database.SaveChanges();
-
                 Lagerplaetze.Add(lagerplatz);
                 Lagerplaetze = Lagerplaetze.OrderBy(x => x.lpz_bezeichnung).ToObservableCollection();
 

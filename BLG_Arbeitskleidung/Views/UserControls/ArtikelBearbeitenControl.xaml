@@ -21,82 +21,51 @@
             Width="150"
             Height="60"
             FontSize="18"
-            FontWeight="Medium"
+            Command="{Binding DatenbankÜberschreibenCommand}"
+            FontWeight="Medium"            
             Background="White">
             <StackPanel>
-                <TextBlock Text="Log-Datei" TextAlignment="Center" />
-                <TextBlock Text="erzeugen" TextAlignment="Center" />
+                <TextBlock Text="Speichern" TextAlignment="Center" />                
             </StackPanel>
         </Button>
 
-        <ListView ItemsSource="{Binding Kleidung}" Grid.Row="0">
-            <ListView.ItemTemplate>
-                <DataTemplate DataType="{x:Type models:Arbeitskleidung}">
-                    <Grid Margin="0,10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="30" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-
-                        <Grid Grid.Row="0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-
-                            <TextBlock Grid.Column="0">
-                                <Run FontWeight="Bold" Text="Artikelname: " />
-                                <Run Text="{Binding artikel_name, Mode=OneWay}" />
-                            </TextBlock>
-
-                            <TextBlock Grid.Column="1" Margin="5,0">
-                                <Run FontWeight="Bold" Text="Größen: " />
-                                <Run Text="{Binding groesse, Mode=OneWay}" />
-                            </TextBlock>                           
-                        </Grid>
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-
         <DataGrid
-            AutoGenerateColumns="False"
+            AutoGenerateColumns="False"   
             Background="White"
             CanUserAddRows="False"
             CanUserDeleteRows="False"
-            CanUserResizeRows="False"
-            FontSize="14"
-            IsReadOnly="False"
-            ItemsSource="{Binding Kleidung}"
+            CanUserResizeRows="False"            
+            FontSize="14"            
+            ItemsSource="{Binding Kleidung}"            
             VerticalScrollBarVisibility="Auto"
-            HorizontalScrollBarVisibility="Auto"              
-        >
+            HorizontalScrollBarVisibility="Auto">
 
             <DataGrid.Columns>
                 <DataGridTextColumn
+                    IsReadOnly="False"
                     Width="Auto"
                     MinWidth="120"
-                    Binding="{Binding artikel_name, Mode=OneWay}"
+                    Binding="{Binding artikel_name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                     Header="Artikel" />
 
                 <DataGridTextColumn
+                    IsReadOnly="False"                    
                     Width="Auto"
-                    MinWidth="120"
-                    Binding="{Binding artikel_nr, Mode=OneWay}"
+                    MinWidth="120"                    
+                    Binding="{Binding artikel_nr, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                     Header="Artikelnummer" />
 
                 <DataGridTextColumn
-                    Width="Auto"                    
-                    Binding="{Binding log_groesse, Mode=OneWay}"
+                    IsReadOnly="False"
+                    Width="Auto"  
+                    Binding="{Binding groesse, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                     Header="Größe" />
                 
                 <DataGridTextColumn
-                    Width="Auto"                    
-                    Binding="{Binding meldegrenze, Mode=OneWay}"
+                    IsReadOnly="False"
+                    Width="*"                    
+                    Binding="{Binding meldegrenze, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                     Header="Meldegrenze" />
-
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
