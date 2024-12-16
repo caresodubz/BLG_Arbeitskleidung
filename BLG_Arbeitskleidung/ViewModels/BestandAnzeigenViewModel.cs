@@ -11,8 +11,7 @@ namespace BLG_Arbeitskleidung.ViewModels {
 
         public ObservableCollection<Arbeitskleidung> Arbeitskleidungen { get; } = new();
 
-        public Bestand Bestände { get; } = new();       
-    
+        public Bestand Bestände { get; } = new();  
 
         public BLGBestandDbContext Database { get; set; }
 

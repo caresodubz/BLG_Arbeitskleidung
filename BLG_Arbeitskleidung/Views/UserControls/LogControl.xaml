@@ -16,19 +16,7 @@
             <RowDefinition Height="80"/>
         </Grid.RowDefinitions>
 
-        <Button
-            Grid.Row="1"            
-            Width="150"
-            Height="60"
-            Command="{Binding ExcelListe}"
-            FontSize="18"
-            FontWeight="Medium"            
-            Background="White" Click="Button_Click">
-            <StackPanel>
-                <TextBlock Text="Log-Datei" TextAlignment="Center" />
-                <TextBlock Text="erzeugen" TextAlignment="Center" />
-            </StackPanel>
-        </Button>
+        
 
         <ListView ItemsSource="{Binding Logs}" Grid.Row="0">
             <ListView.ItemTemplate>

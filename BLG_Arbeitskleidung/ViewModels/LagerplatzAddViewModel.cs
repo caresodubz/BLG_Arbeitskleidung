@@ -113,6 +113,7 @@ namespace BLG_Arbeitskleidung.ViewModels {
             }
         }
     }
+
     public static class IEnumerableExtensions {
         public static ObservableCollection<T> ToObservableCollection<T>(this IEnumerable<T> enumerable) {
             return [.. enumerable];

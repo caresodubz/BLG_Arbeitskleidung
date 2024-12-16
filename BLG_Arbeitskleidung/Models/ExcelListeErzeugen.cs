@@ -10,7 +10,6 @@ using System.Windows.Input;
 
 namespace BLG_Arbeitskleidung.Models {
     class ExcelListeErzeugen {
-
         public BLGBestandDbContext Database { get; set; } = new();
         private List<Arbeitskleidung> BanfListe { get; set; } = [];
 
@@ -20,12 +19,10 @@ namespace BLG_Arbeitskleidung.Models {
 
         public void ErstelleExcelListe() {
             try {
-
                 SaveFileDialog saveFileDialog = new() {
                     Filter = "Excel Dokumente (.xlsx)|*.xlsx|Alle Dateien (*.*)|*.*",
                     Title = "Speichern unter..."
                 };
-
 
                 DialogResult result = saveFileDialog.ShowDialog();
                 if(result == DialogResult.OK) {
@@ -35,7 +32,6 @@ namespace BLG_Arbeitskleidung.Models {
                         file.Delete();
                         file = new FileInfo(saveFileDialog.FileName);
                     }
-
 
                     using(SpreadsheetDocument document = SpreadsheetDocument.Create(
                         saveFileDialog.FileName,
@@ -66,7 +62,7 @@ namespace BLG_Arbeitskleidung.Models {
                                 new Cell() { CellValue = new CellValue("ID"), DataType = CellValues.String },
                                 new Cell() { CellValue = new CellValue("Artikelname"), DataType = CellValues.String },
                                 new Cell() { CellValue = new CellValue("Artikelnummer"), DataType = CellValues.String },
-                                new Cell() { CellValue = new CellValue("Größe"), DataType = CellValues.String },                                
+                                new Cell() { CellValue = new CellValue("Größe"), DataType = CellValues.String },
                                 new Cell() { CellValue = new CellValue("Gesamtbestand"), DataType = CellValues.String }
                         );
                         sheetData.Append(headerRow);
@@ -77,7 +73,7 @@ namespace BLG_Arbeitskleidung.Models {
                                 new Cell() { CellValue = new CellValue(item.artikel_id.ToString()), DataType = CellValues.Number },
                                 new Cell() { CellValue = new CellValue(item.artikel_name), DataType = CellValues.String },
                                 new Cell() { CellValue = new CellValue(item.artikel_nr), DataType = CellValues.String },
-                                new Cell() { CellValue = new CellValue(item.groesse), DataType = CellValues.String },                                
+                                new Cell() { CellValue = new CellValue(item.groesse), DataType = CellValues.String },
                                 new Cell() { CellValue = new CellValue(item.GesamtBestand.ToString()), DataType = CellValues.Number }
                             );
                             sheetData.Append(row);

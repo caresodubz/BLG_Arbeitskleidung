@@ -16,5 +16,9 @@
   <ItemGroup>
     <ProjectReference Include="..\Arbeitsbekleidung.Models\Arbeitsbekleidung.Models.csproj" />
   </ItemGroup>
+	
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
 
 </Project>

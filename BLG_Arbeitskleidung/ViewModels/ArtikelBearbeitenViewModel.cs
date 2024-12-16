@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace BLG_Arbeitskleidung.ViewModels {
     partial class ArtikelBearbeitenViewModel : ObservableObject {
-        public BLGBestandDbContext Database { get; set; }
+        public BLGBestandDbContext Database { get; set; } 
         public ObservableCollection<Arbeitskleidung> Kleidung { get; set; } = [];
         public ObservableCollection<Arbeitskleidung> TempKleidung { get; set; }
 
