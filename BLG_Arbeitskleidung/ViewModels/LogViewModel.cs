@@ -2,6 +2,8 @@
 using System.Collections.ObjectModel;
 using Arbeitsbekleidung.Models.Models;
 using Arbeitsbekleidung.Database.Database;
+using CommunityToolkit.Mvvm.Input;
+using BLG_Arbeitskleidung.Models;
 
 namespace BLG_Arbeitskleidung.ViewModels {
     public partial class LogViewModel : ObservableObject {
@@ -15,6 +17,12 @@ namespace BLG_Arbeitskleidung.ViewModels {
             foreach(Log logs in Database.Log) {
                 Logs.Add(logs);
             }
-        }        
+        }
+
+        [RelayCommand]
+        protected void CreateLogExcel() {
+            LogExcelErzeugen logexcel = new LogExcelErzeugen();
+            logexcel.LogExcel();
+        }
     }
 }

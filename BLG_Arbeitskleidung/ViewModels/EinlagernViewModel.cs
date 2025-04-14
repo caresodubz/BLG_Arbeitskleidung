@@ -11,7 +11,7 @@ namespace BLG_Arbeitskleidung.ViewModels {
 
         public BLGBestandDbContext Database { get; set; }
 
-        public Arbeitskleidung[] Arbeitskleidungen { get; }
+        public Arbeitskleidung[] Arbeitskleidungen { get; }             
 
         public Lagerplatz[] Lagerplaetze { get; }
 
@@ -30,11 +30,11 @@ namespace BLG_Arbeitskleidung.ViewModels {
         protected bool _IsMengeLeer = false;
 
         [ObservableProperty]
-        protected string _Bemerkung;  
+        protected string? _Bemerkung = null;  
 
         public DateTime Einlagern_datum { get; set; } = DateTime.Now;
 
-        public string Bearbeiter { get; set; } = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
+        public string Bearbeiter { get; set; } = System.Security.Principal.WindowsIdentity.GetCurrent().Name.Substring(6);
 
         public string[] Artikelnamen {
             get {
@@ -111,7 +111,6 @@ namespace BLG_Arbeitskleidung.ViewModels {
                     Database.Bestand.Add(bestand);
                 }
 
-
                 Log log = new() {
                     log_bemerkung = Bemerkung,
                     datum = DateTime.Now,
@@ -131,7 +130,7 @@ namespace BLG_Arbeitskleidung.ViewModels {
                     "Information",
                     MessageBoxButton.OK,
                     MessageBoxImage.Information);
-            }
+                }
             catch(Exception ex) {
                 MessageBox.Show(
                     $"Fehler mit der Datenbankverbindung ({ex.Message})!",

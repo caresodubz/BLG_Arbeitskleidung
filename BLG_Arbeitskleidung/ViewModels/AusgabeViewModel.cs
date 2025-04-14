@@ -42,7 +42,7 @@ namespace BLG_Arbeitskleidung.ViewModels {
 
         [ObservableProperty]
         protected bool _PersNummerTextBox = false;
-        public string Bearbeiter { get; set; } = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
+        public string Bearbeiter { get; set; } = System.Security.Principal.WindowsIdentity.GetCurrent().Name.Substring(6);
 
         public AusgabeViewModel(BLGBestandDbContext database) {
             Database = database;
@@ -169,13 +169,12 @@ namespace BLG_Arbeitskleidung.ViewModels {
 
                 Database.Add(mitarbeiter);
                 Database.SaveChanges();
-            }
-            
+            }            
 
             foreach(var item in SelectedBestände) {
                 Log log = new() {
                     datum = DateTime.Now,
-                    artikel = item.Arbeitskleidung!.DisplayArtikelName,
+                    artikel = item.Arbeitskleidung!.artikel_name,
                     log_groesse = item.Arbeitskleidung.groesse,
                     log_lpz = item.Lagerplatz!.lpz_bezeichnung,
                     log_funktion = "Ausgabe",
