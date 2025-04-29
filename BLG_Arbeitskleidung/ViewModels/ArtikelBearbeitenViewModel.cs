@@ -20,19 +20,18 @@ namespace BLG_Arbeitskleidung.ViewModels {
 
         [RelayCommand]
         protected void DatenbankÜberschreiben() {            
+            try {                
+                Database.SaveChanges();
                 MessageBox.Show(
                 "Speichern war erfolgreich!",
                 "Information",
                 MessageBoxButton.OK,
                 MessageBoxImage.Information
                 );            
-
-            try {                
-                Database.SaveChanges();
             }
             catch(Exception ex) {
                 MessageBox.Show(ex.Message, "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
-            }            
+            }
         }        
     }
 }

@@ -82,7 +82,7 @@ namespace BLG_Arbeitskleidung.Models {
                                 new Cell() { CellValue = new CellValue(item.artikel!), DataType = CellValues.String },
                                 new Cell() { CellValue = new CellValue(item.log_stueckzahl.ToString()), DataType = CellValues.Number },
                                 new Cell() { CellValue = new CellValue(item.log_groesse!), DataType = CellValues.String },
-                                new Cell() { CellValue = new CellValue(item.person_nr!.ToString()), DataType = CellValues.String },
+                                new Cell() { CellValue = new CellValue(item.person_nr ?? string.Empty), DataType = CellValues.String },
                                 new Cell() { CellValue = new CellValue(item.log_bemerkung!), DataType = CellValues.String }
                             );
                             sheetData.Append(row);
