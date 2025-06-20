@@ -85,7 +85,7 @@ namespace BLG_Arbeitskleidung.Models {
                             "Information",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Information
-                            );
+                        );
                     }
                 }
             }
