@@ -40,8 +40,8 @@
                     <RowDefinition Height="80"/>
                     <RowDefinition Height="80"/>
                 </Grid.RowDefinitions>
-                
-            <TextBlock
+
+                <TextBlock
                 Grid.Row="0"
                 Text="Artikelnummer: *"
                 FontWeight="Medium"               
@@ -49,8 +49,8 @@
                 VerticalAlignment="Center"
                 HorizontalAlignment="Left"
                 />
-                
-            <TextBlock
+
+                <TextBlock
                 Grid.Row="1"
                 Text="Artikelname: *"
                 FontWeight="Medium"                
